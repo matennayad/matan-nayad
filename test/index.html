@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דף בדיקה</title>
+<style>
+:root{--bg:#f2f6fb;--card:#fff;--ink:#0b1e3a;--muted:#56657d;--ok:#22a06b}
+@media (prefers-color-scheme:dark){:root{--bg:#081427;--card:#0f2140;--ink:#eef3ff;--muted:#9fb0cc}}
+*{box-sizing:border-box;margin:0}
+body{font-family:system-ui,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:grid;place-items:center;padding:16px}
+.card{background:var(--card);border-radius:20px;padding:40px 28px;max-width:440px;width:100%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.check{width:80px;height:80px;border-radius:50%;background:var(--ok);color:#fff;font-size:44px;display:grid;place-items:center;margin:0 auto 20px}
+h1{font-size:1.8rem;margin-bottom:.5rem}
+p{color:var(--muted);line-height:1.6}
+.time{margin-top:20px;font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums}
+button{margin-top:20px;padding:.8em 1.6em;border-radius:999px;border:0;background:var(--ink);color:var(--bg);font-size:1rem;font-weight:700;cursor:pointer}
+#count{font-weight:700}
+a{color:inherit}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="check">✓</div>
+  <h1>האתר נפתח!</h1>
+  <p>אם הדף הזה מוצג, האתר עובר את הסינון ונטען בהצלחה.</p>
+  <div class="time" id="clock">--:--:--</div>
+  <button id="btn">לחץ לבדיקת JavaScript</button>
+  <p style="margin-top:10px">לחיצות: <span id="count">0</span></p>
+  <p style="margin-top:24px"><a href="../">← לאתר מטען נייד</a></p>
+</div>
+<script>
+const c=document.getElementById("clock");
+const tick=()=>c.textContent=new Date().toLocaleTimeString("he-IL");
+tick();setInterval(tick,1000);
+let n=0;document.getElementById("btn").onclick=()=>document.getElementById("count").textContent=++n;
+</script>
+</body>
+</html>
