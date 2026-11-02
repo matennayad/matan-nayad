@@ -326,5 +326,45 @@ document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 let p = 0; const pct = document.getElementById("pct");
 const t = setInterval(() => { p += 2; pct.textContent = p < 100 ? `טוען… ${p}%` : "100% – מוכנים!"; if (p >= 100) clearInterval(t); }, 40);
 </script>
+
+<!-- ===== דף בדיקה – נפתח בכתובת האתר עם #test בסוף ===== -->
+<div id="testView" hidden>
+  <div class="t-card">
+    <div class="t-check">✓</div>
+    <h1>האתר נפתח!</h1>
+    <p>אם הדף הזה מוצג, התוכן נטען בהצלחה מאותה כתובת בדיוק.</p>
+    <div class="t-time" id="tClock">--:--:--</div>
+    <button class="btn btn-volt" id="tBtn" type="button">לחץ לבדיקת JavaScript</button>
+    <p>לחיצות: <b id="tCount">0</b></p>
+    <p><a href="#" id="tBack">→ חזרה לאתר מטען נייד</a></p>
+  </div>
+</div>
+<style>
+#testView{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-items:center;padding:16px}
+#testView[hidden]{display:none}
+.t-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:40px 28px;max-width:440px;width:100%;text-align:center;box-shadow:var(--shadow);display:grid;gap:14px;justify-items:center}
+.t-card p{color:var(--muted)}
+.t-card a{color:var(--accent);font-weight:700}
+.t-check{width:80px;height:80px;border-radius:50%;background:#22a06b;color:#fff;font-size:44px;display:grid;place-items:center}
+.t-time{font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums}
+</style>
+<script>
+(() => {
+  const view = document.getElementById("testView");
+  const clock = document.getElementById("tClock");
+  let n = 0;
+  document.getElementById("tBtn").onclick = () => document.getElementById("tCount").textContent = ++n;
+  document.getElementById("tBack").onclick = e => { e.preventDefault(); history.replaceState(null, "", location.pathname); route(); };
+  setInterval(() => clock.textContent = new Date().toLocaleTimeString("he-IL"), 1000);
+  function route(){
+    const show = location.hash === "#test";
+    view.hidden = !show;
+    document.body.style.overflow = show ? "hidden" : "";
+    document.title = show ? "דף בדיקה" : "מטען נייד | בניית אתרים ואפליקציות";
+  }
+  addEventListener("hashchange", route);
+  route();
+})();
+</script>
 </body>
 </html>
