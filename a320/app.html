@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
+<title>תא טייס A320</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: the aircraft fills the screen; a cockpit-style glass dock floats over it.
+   Single dark look on purpose: the panels sit on a bright sky in either theme. */
+:root{
+  --glass: rgba(14,19,27,.78);
+  --glass-2: rgba(28,36,48,.86);
+  --line: rgba(160,180,205,.22);
+  --ink: #eef3f8;
+  --ink-2: #a9b6c6;
+  --amber: #ffb547;
+  --cyan: #63d3ff;
+  --green: #3ee07a;
+  --sky: #9fc4e6;
+  --font-ui: "Heebo", "Arial Hebrew", "Segoe UI", Arial, sans-serif;
+  --font-num: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--sky);color:var(--ink);font-family:var(--font-ui);overflow:hidden;-webkit-tap-highlight-color:transparent}
+#app{position:fixed;inset:0;direction:rtl}
+#scene{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;outline:none}
+.panel{background:var(--glass);border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,10,25,.25)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+/* header */
+.head{position:absolute;top:max(12px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));padding:12px 16px;max-width:min(420px,calc(100% - 32px))}
+.head .fig{font-family:var(--font-num);font-size:11px;letter-spacing:.12em;color:var(--amber)}
+.head h1{margin:2px 0 4px;font-size:22px;font-weight:800;line-height:1.15;text-wrap:balance}
+.head p{margin:0;font-size:13px;color:var(--ink-2);line-height:1.45}
+
+/* readout */
+.readout{position:absolute;top:max(12px,env(safe-area-inset-top,0px));left:max(16px,env(safe-area-inset-left,0px));padding:10px 12px;display:grid;grid-template-columns:repeat(2,minmax(108px,auto));gap:6px 14px}
+.ro{display:flex;flex-direction:column;gap:0;min-width:0}
+.ro span{font-size:11.5px;color:var(--ink-2);letter-spacing:.02em}
+.ro b{font-family:var(--font-num);font-weight:600;font-size:19px;color:var(--green);font-variant-numeric:tabular-nums;direction:ltr;text-align:right;white-space:nowrap}
+.ro b small{font-size:11px;color:var(--ink-2);font-weight:500;margin-inline-start:4px}
+.ro.wide{grid-column:1/-1;border-top:1px solid var(--line);padding-top:6px}
+
+/* views */
+.views{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;padding:8px}
+.views h2,.dock h2{margin:0 0 2px;font-size:11px;font-weight:500;color:var(--ink-2);letter-spacing:.06em}
+.chip{background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13.5px;cursor:pointer;text-align:right;white-space:nowrap}
+.chip:hover{border-color:var(--cyan)}
+.chip[aria-pressed="true"]{background:var(--cyan);color:#06202c;border-color:var(--cyan);font-weight:700}
+
+/* control dock */
+.dock{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:max(14px,env(safe-area-inset-bottom,0px));display:flex;gap:16px;padding:12px 14px;align-items:stretch}
+.ctl{display:flex;flex-direction:column;gap:6px;align-items:center}
+.ctl .cap{font-size:11px;color:var(--ink-2);text-align:center;line-height:1.3}
+#thr-track{position:relative;width:46px;height:150px;border-radius:10px;background:linear-gradient(#1b232e,#121820);border:1px solid var(--line);cursor:ns-resize;touch-action:none}
+#thr-track .det{position:absolute;left:4px;right:4px;height:1px;background:rgba(255,255,255,.35)}
+#thr-track .det i.l{right:auto;left:calc(100% + 8px)}
+#thr-track .det i{position:absolute;right:calc(100% + 8px);top:-7px;font-style:normal;font-size:10.5px;color:var(--ink-2);white-space:nowrap}
+#thr-handle{position:absolute;left:3px;right:3px;height:22px;border-radius:6px;background:linear-gradient(#3b434e,#20262e);border:1px solid #6a7480;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+#thr-handle::after{content:"";position:absolute;left:6px;right:6px;top:10px;height:2px;background:var(--amber);border-radius:2px}
+#thr-val{font-family:var(--font-num);font-size:13px;color:var(--amber);min-width:52px;text-align:center}
+.thr-wrap{display:flex;gap:30px;align-items:flex-start;padding-right:36px;padding-left:40px}
+#stick-pad{position:relative;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#1b232e 0,#121820 70%);border:1px solid var(--line);touch-action:none;cursor:grab}
+#stick-pad::before,#stick-pad::after{content:"";position:absolute;background:rgba(255,255,255,.12)}
+#stick-pad::before{left:50%;top:12px;bottom:12px;width:1px}
+#stick-pad::after{top:50%;left:12px;right:12px;height:1px}
+#stick-knob{position:absolute;left:calc(50% - 18px);top:calc(50% - 18px);width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#59636f,#1c2128);border:1px solid #7b8692;box-shadow:0 4px 10px rgba(0,0,0,.5);pointer-events:none}
+.pad-l{position:absolute;font-size:10.5px;color:var(--ink-2);pointer-events:none;white-space:nowrap}
+.btns{display:flex;flex-direction:column;gap:8px;justify-content:center;min-width:128px}
+.btn{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--glass-2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;cursor:pointer;font-size:14px}
+.btn b{font-family:var(--font-num);color:var(--amber);font-weight:600}
+.btn:hover{border-color:var(--amber)}
+.keys{font-size:10.5px;color:var(--ink-2);line-height:1.5}
+
+/* info card */
+#info{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:max(14px,env(safe-area-inset-bottom,0px));width:min(360px,calc(100% - 32px));padding:14px 16px 16px;border-color:rgba(255,181,71,.55)}
+#info .info-group{font-size:11px;color:var(--amber);letter-spacing:.06em}
+#info .info-name{margin:2px 0 6px;font-size:19px;font-weight:800}
+#info .info-text{margin:0;font-size:14.5px;line-height:1.6;color:var(--ink);max-width:60ch}
+#info .info-close{position:absolute;left:10px;top:10px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;font-size:16px;line-height:1}
+
+/* part list */
+.parts{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:calc(max(12px,env(safe-area-inset-top,0px)) + 132px);max-height:calc(100% - 330px);overflow:auto;padding:8px 10px;min-width:180px}
+.parts summary{cursor:pointer;font-size:13.5px;font-weight:700;padding:2px 0;list-style:none}
+.parts summary::-webkit-details-marker{display:none}
+.parts summary::after{content:" ▾";color:var(--ink-2)}
+.parts[open] summary::after{content:" ▴"}
+.parts h3{margin:10px 0 4px;font-size:11px;color:var(--amber);font-weight:500;letter-spacing:.06em}
+.parts ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.parts li button{background:none;border:0;padding:3px 0;cursor:pointer;font-size:13px;color:var(--ink);text-align:right}
+.parts li button:hover{color:var(--cyan)}
+
+#loading{position:absolute;inset:0;display:grid;place-items:center;font-size:18px;color:#0d2236;background:var(--sky)}
+.credit{position:absolute;left:50%;transform:translateX(-50%);bottom:max(4px,env(safe-area-inset-bottom,0px));font-size:10.5px;color:rgba(10,30,50,.75);white-space:nowrap}
+.credit a{color:inherit}
+
+/* phone */
+@media (max-width:760px){
+  .head{left:max(10px,env(safe-area-inset-left,0px));right:max(10px,env(safe-area-inset-right,0px));max-width:none;padding:8px 12px;border-radius:12px}
+  .head h1{font-size:17px;margin:0}
+  .head p{display:none}
+  .head .fig{display:none}
+  .readout{top:calc(max(12px,env(safe-area-inset-top,0px)) + 46px);left:max(10px,env(safe-area-inset-left,0px));right:max(10px,env(safe-area-inset-right,0px));display:flex;overflow-x:auto;gap:14px;padding:6px 10px;border-radius:12px;scrollbar-width:none}
+  .ro{flex:0 0 auto}
+  .ro span{white-space:nowrap}
+  .ro b{font-size:15px}
+  .ro.wide{border:0;padding:0}
+  .views{top:auto;transform:none;bottom:calc(max(14px,env(safe-area-inset-bottom,0px)) + 168px);left:max(10px,env(safe-area-inset-left,0px));right:max(10px,env(safe-area-inset-right,0px));flex-direction:row;overflow-x:auto;padding:6px;scrollbar-width:none;border-radius:12px}
+  .views h2{display:none}
+  .chip{padding:5px 11px;font-size:13px}
+  .dock{left:max(10px,env(safe-area-inset-left,0px));right:max(10px,env(safe-area-inset-right,0px));bottom:max(10px,env(safe-area-inset-bottom,0px));gap:10px;padding:10px;justify-content:space-between}
+  .dock h2,.keys{display:none}
+  #thr-track{height:118px;width:42px}
+  #stick-pad{width:118px;height:118px}
+  .thr-wrap{gap:24px;padding-right:30px;padding-left:36px}
+  .btns{min-width:0;flex:1}
+  .btn{padding:7px 9px;font-size:12.5px;white-space:nowrap;gap:6px}
+  #info{left:max(10px,env(safe-area-inset-left,0px));right:max(10px,env(safe-area-inset-right,0px));width:auto;bottom:calc(max(10px,env(safe-area-inset-bottom,0px)) + 168px)}
+  .parts{top:calc(max(12px,env(safe-area-inset-top,0px)) + 112px);right:max(10px,env(safe-area-inset-right,0px));max-height:calc(100% - 380px);min-width:0;padding:6px 10px}
+  .credit{bottom:auto;top:calc(max(12px,env(safe-area-inset-top,0px)) + 118px);left:max(10px,env(safe-area-inset-left,0px));transform:none;font-size:9.5px}
+  .credit .more{display:none}
+}
+@media (max-width:380px){ .btn{font-size:12px} .thr-wrap{padding-right:26px;gap:18px} }
+
+.tabs{display:flex;gap:4px;margin-bottom:8px;background:rgba(255,255,255,.06);border-radius:10px;padding:3px}
+.tab{flex:1;border:0;background:none;color:inherit;font:inherit;font-weight:700;padding:7px 10px;border-radius:8px;cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--cyan);color:#06202c}
+.chips{display:flex;flex-direction:column;gap:6px}
+@media (max-width:640px){.chips{flex-direction:row}.tabs{margin:0 0 0 6px;flex:0 0 auto}.tab{padding:5px 9px;white-space:nowrap}}
+body[data-mode="cockpit"] .ex-only, body[data-mode="exterior"] .ck-only, body[data-mode="cabin"] .ex-only, body[data-mode="cabin"] .ck-only, body[data-mode="cockpit"] .cab-only, body[data-mode="exterior"] .cab-only{display:none}
+.walk{display:flex;gap:6px}
+.walk .chip{flex:1}
+body[data-mode="cockpit"] .hint-ex, body[data-mode="cockpit"] .hint-cab, body[data-mode="exterior"] .hint-ck, body[data-mode="exterior"] .hint-cab, body[data-mode="cabin"] .hint-ck, body[data-mode="cabin"] .hint-ex{display:none}
+.info-code{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em;color:#ffb547;margin:2px 0 6px;text-align:right}
+.lbar{width:220px;height:4px;background:rgba(255,255,255,.15);border-radius:2px;margin:14px auto 0;overflow:hidden}
+.lbar i{display:block;height:100%;width:0;background:#ffb547;transition:width .2s}
+#scene{cursor:grab}
+.qual{display:flex;gap:4px;align-items:center;font-size:11px;color:var(--ink-2);flex-wrap:wrap}
+.qual button{font:inherit;font-size:11px;padding:3px 7px;border-radius:7px;border:1px solid var(--line);background:transparent;color:inherit;cursor:pointer}
+.qual button[aria-pressed="true"]{background:var(--cyan);color:#06202c;border-color:var(--cyan)}
+#btn-flaps,#btn-gear,#btn-spoiler{display:grid!important;grid-template-columns:1fr auto;align-items:center;row-gap:1px;text-align:right}
+#btn-flaps small,#btn-gear small,#btn-spoiler small{grid-column:1/-1;font-size:11px;font-weight:500;opacity:.7}
+.keys div{line-height:1.5}
+#land-msg{position:absolute;top:150px;left:calc(50% - 130px);transform:translateX(-50%);max-width:min(440px,70vw);padding:10px 16px;font-size:15px;line-height:1.5;text-align:center}
+@media (max-width:640px){#land-msg{top:118px;font-size:13px}}
+.acts{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:6px}
+.chip.act[aria-pressed="true"]{background:#ffb547;border-color:#ffb547;color:#1a1206}
+.info-state{margin:4px 0 8px;padding:6px 10px;border-radius:8px;background:rgba(255,181,71,.14);color:#ffcf85;font-weight:700;font-size:14px}
+.info-state[data-on="0"]{background:rgba(255,255,255,.07);color:var(--ink-2)}
+.info-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.info-btns button{font:inherit;font-weight:700;font-size:14px;padding:8px 14px;border-radius:10px;border:1px solid var(--cyan);background:var(--cyan);color:#06202c;cursor:pointer}
+.info-btns .info-look{background:transparent;color:var(--cyan)}
+.fig .back{color:var(--cyan);text-decoration:none;font-weight:700;font-family:inherit;letter-spacing:0}
+</style>
+
+<div id="app">
+  <canvas id="scene" aria-label="מטוס נוסעים בתלת-ממד. גררו לסיבוב, צבטו או גללו לזום, לחצו על חלק כדי ללמוד עליו." tabindex="0"></canvas>
+
+  <header class="head panel">
+    <div class="fig"><a href="../" target="_top" class="back">→ חזרה לאתר מטען נייד</a></div>
+    <h1>תא הטייס של A320</h1>
+    <p class="hint-ck">גררו כדי להסתכל לכל כיוון, גללו או צבטו כדי להתקרב. לחצו על כל כפתור, מתג או מסך כדי לראות מה הוא עושה. כל המתגים זזים והנוריות נדלקות, והאורות, הדלתות, מנוע העזר, המנועים, הטייס האוטומטי ועמודי ECAM באמת פועלים.</p>
+    <p class="hint-cab">גררו כדי להסתכל, והשתמשו בכפתורי קדימה ואחורה כדי ללכת במעבר. לחצו על מושב, שולחן, וילון, מנורה, תא מטען, עגלה, מושב דייל או ידית דלת, והם יגיבו. השלטים נדלקים מהמתגים בתא הטייס.</p>
+    <p class="hint-ex">גררו כדי לסובב, גללו או צבטו כדי להתקרב. לחצו על כל חלק במטוס כדי לראות מה הוא עושה, ועל דלת כדי לפתוח אותה.</p>
+  </header>
+
+  <section class="readout panel" aria-label="נתוני טיסה">
+    <div class="ro"><span>דחף כולל</span><b><em id="r-thrust" style="font-style:normal">0</em><small>kN</small></b></div>
+    <div class="ro"><span>מהירות אוויר</span><b><em id="r-speed" style="font-style:normal">0</em><small>קשר</small></b></div>
+    <div class="ro"><span>גובה</span><b><em id="r-alt" style="font-style:normal">0</em><small>רגל</small></b></div>
+    <div class="ro"><span>קצב טיפוס</span><b><em id="r-vs" style="font-style:normal">0</em><small>רגל/דקה</small></b></div>
+    <div class="ro"><span>סל"ד מאוורר</span><b><em id="r-rpm" style="font-style:normal">0</em><small>RPM</small></b></div>
+    <div class="ro"><span>N1</span><b><em id="r-n1" style="font-style:normal">0</em><small>%</small></b></div>
+    <div class="ro"><span>זווית אף</span><b id="r-pitch">0°</b></div>
+    <div class="ro"><span>הטיה</span><b id="r-bank">0°</b></div>
+  </section>
+
+  <nav class="views panel" aria-label="נקודות מבט">
+    <div class="tabs" role="group" aria-label="מצב תצוגה">
+      <button class="tab" data-mode="cockpit" aria-pressed="true">תא הטייס</button>
+      <button class="tab" data-mode="cabin" aria-pressed="false">תא הנוסעים</button>
+      <button class="tab" data-mode="exterior" aria-pressed="false">מבט חיצוני</button>
+    </div>
+    <div class="chips acts">
+      <button class="chip act" data-act="night" aria-pressed="false">🌙 לילה</button>
+      <button class="chip act" data-act="lights" aria-pressed="false">💡 כל האורות</button>
+      <button class="chip act" data-act="pdoors" aria-pressed="false">🚪 דלתות נוסעים</button>
+      <button class="chip act" data-act="cdoors" aria-pressed="false">📦 דלתות מטען</button>
+      <button class="chip act" data-act="land" aria-pressed="false">🛬 נחיתה בלילה</button>
+    </div>
+    <div class="chips ck-only">
+      <button class="chip" data-eye="forward" aria-pressed="true">קדימה</button>
+      <button class="chip" data-eye="glare">לוח טייס אוטומטי</button>
+      <button class="chip" data-eye="main">לוח מכשירים</button>
+      <button class="chip" data-eye="pedestal">קונסולה מרכזית</button>
+      <button class="chip" data-eye="overhead">לוח עליון</button>
+      <button class="chip" data-eye="lights">מתגי אורות ומנוע עזר</button>
+      <button class="chip" data-eye="side">סטיק וקונסולת צד</button>
+    </div>
+    <div class="chips cab-only">
+      <button class="chip" data-cab="aisleF" aria-pressed="true">מעבר מקדימה</button>
+      <button class="chip" data-cab="aisleB">מעבר מאחור</button>
+      <button class="chip" data-cab="seat">ממושב ליד חלון</button>
+      <button class="chip" data-cab="door">דלת קדמית</button>
+      <button class="chip" data-cab="galley">מטבחון ומושבי דיילים</button>
+      <button class="chip" data-cab="exit">יציאת חירום</button>
+      <button class="chip" data-cab="aft">מטבחון אחורי</button>
+      <button class="chip" data-cab="up">תאי מטען ותקרה</button>
+      <div class="walk"><button class="chip" data-walk="1.2">קדימה ▲</button><button class="chip" data-walk="-1.2">אחורה ▼</button></div>
+    </div>
+    <div class="chips ex-only">
+      <button class="chip" data-ext="overview" aria-pressed="true">כל המטוס</button>
+      <button class="chip" data-ext="front">חזית</button>
+      <button class="chip" data-ext="wing">כנף</button>
+      <button class="chip" data-ext="engine">מנוע</button>
+      <button class="chip" data-ext="under">מלמטה</button>
+      <button class="chip" data-ext="tail">זנב</button>
+    </div>
+  </nav>
+
+  <section class="dock panel" aria-label="שליטה במטוס">
+    <div class="ctl">
+      <h2>מצערת</h2>
+      <div class="thr-wrap">
+        <div id="thr-track" role="slider" tabindex="0" aria-label="מצערת" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60">
+          <div class="det" style="bottom:11px"><i>סרק</i></div>
+          <div class="det" style="bottom:calc(11px + (100% - 22px) * .87)"><i>טיפוס</i></div>
+          <div class="det" style="bottom:calc(100% - 11px)"><i class="l">המראה</i></div>
+          <div id="thr-handle"></div>
+        </div>
+      </div>
+      <div id="thr-val">60%</div>
+    </div>
+    <div class="ctl">
+      <h2>סטיק – היגוי המטוס</h2>
+      <div id="stick-pad" tabindex="0" aria-label="מקל צד: גררו ימינה ושמאלה להטיה, למעלה ולמטה לאף">
+        <span class="pad-l" style="top:4px;left:50%;transform:translateX(-50%)">אף מטה</span>
+        <span class="pad-l" style="bottom:4px;left:50%;transform:translateX(-50%)">אף מעלה</span>
+        <span class="pad-l" style="right:5px;top:50%;transform:translateY(-130%)">ימינה</span>
+        <span class="pad-l" style="left:5px;top:50%;transform:translateY(-130%)">שמאלה</span>
+        <div id="stick-knob"></div>
+      </div>
+    </div>
+    <div class="btns">
+      <h2>מערכות</h2>
+      <button class="btn" id="btn-flaps" type="button"><span>מדפים</span><b>סגורים</b><small>לחץ להוצאה</small></button>
+      <button class="btn" id="btn-gear" type="button" aria-pressed="false"><span>כן נסה (גלגלים)</span><b>מקופל</b><small>לחץ להורדה</small></button>
+      <button class="btn" id="btn-spoiler" type="button" aria-pressed="false"><span>בלמי אוויר</span><b>סגורים</b><small>לחץ לפתיחה</small></button>
+      <div class="qual" role="group" aria-label="איכות תצוגה"><span>איכות:</span><button data-q="auto">אוטומטית</button><button data-q="low">נמוכה</button><button data-q="mid">בינונית</button><button data-q="high">גבוהה</button></div>
+      <div class="keys"><div>חצים במקלדת: היגוי</div><div>מקש G: כן נסה</div><div>מקש F: מדפים</div></div>
+    </div>
+  </section>
+
+  <div id="land-msg" class="panel" hidden></div>
+  <aside id="info" class="panel" hidden aria-live="polite">
+    <button class="info-close" type="button" aria-label="סגירה">✕</button>
+    <div class="info-group"></div>
+    <div class="info-name"></div>
+    <div class="info-code" dir="ltr"></div>
+    <div class="info-state" hidden></div>
+    <p class="info-text"></p>
+    <div class="info-btns"><button class="info-act" type="button" hidden></button><button class="info-look" type="button" hidden>ראה מבחוץ ←</button></div>
+  </aside>
+
+  <div class="credit">דגמי תא הטייס והמטוס: <a href="https://github.com/legoboyvdlp/A320-family" target="_blank" rel="noopener">FlightGear A320-family</a> (Josh Davidson, Jonathan Redpath ושותפים), ‏GPL-2.0<span class="more">, המרה: czkai9010/a320-trainer-models</span></div>
+  <div id="loading"><div>טוען את תא הטייס…<div class="lbar"><i id="load-bar"></i></div></div></div>
+</div>
+
+<script>
+// fetch() of blob:/data: URLs can be blocked when the page is opened from disk: fall back to XHR
+(function(){var f=window.fetch;if(!f)return;window.fetch=function(u,o){var url=typeof u==='string'?u:(u&&u.url)||'';return f.apply(this,arguments).catch(function(err){if(!/^(blob|data):/.test(url))throw err;return new Promise(function(res,rej){var x=new XMLHttpRequest();x.open('GET',url);x.responseType='blob';x.onload=function(){res(new Response(x.response,{status:200}))};x.onerror=function(){rej(err)};x.send();});});};})();
+</script>
+<script>
+// show any start-up problem on the loading screen instead of hanging
+(function(){
+  function show(msg, detail){
+    var el=document.getElementById('loading'); if(!el||el.hidden) return;
+    el.innerHTML='';
+    var box=document.createElement('div'); box.style.cssText='max-width:560px;padding:24px;text-align:center;line-height:1.6';
+    var h=document.createElement('div'); h.style.cssText='font-weight:800;font-size:19px;margin-bottom:8px'; h.textContent=msg; box.appendChild(h);
+    if(detail){var d=document.createElement('div'); d.style.cssText='font-size:13px;opacity:.8;direction:ltr;word-break:break-word;margin-top:10px;font-family:monospace'; d.textContent=detail; box.appendChild(d);}
+    el.appendChild(box);
+  }
+  window.__fail=show;
+  var c=document.createElement('canvas'), gl=null;
+  try{ gl=c.getContext('webgl2')||c.getContext('webgl'); }catch(e){}
+  window.__noGL=!gl;
+  window.addEventListener('error',function(e){ show(window.__noGL?'הדפדפן לא מאפשר תצוגת תלת-ממד (WebGL)':'משהו השתבש בטעינת המטוס', window.__noGL?'Chrome: Settings > System > "Use graphics acceleration when available" > Relaunch':(e.message||'')+' '+(e.filename?'@'+e.lineno:'')); });
+  window.addEventListener('unhandledrejection',function(e){ show('משהו השתבש בטעינת המטוס', String(e.reason&&e.reason.message||e.reason)); });
+  setTimeout(function(){ if(!window.__ready) show(window.__noGL?'הדפדפן לא מאפשר תצוגת תלת-ממד (WebGL)':'הטעינה לוקחת יותר מדי זמן', window.__noGL?'Chrome: Settings > System > "Use graphics acceleration when available" > Relaunch':'no ready signal after 25s'); }, 25000);
+})();
+</script>
+
+<script>
+(function(){
+  var LIST = [{"file":"data.js","v":"1a084db3a7","end":"__dataEnd"},{"file":"m_ck_0.js","v":"2beb3d9a56","key":"ck_0","len":1000000},{"file":"m_ck_1.js","v":"edae2f9fb0","key":"ck_1","len":1000000},{"file":"m_ck_2.js","v":"546fba2228","key":"ck_2","len":1000000},{"file":"m_ck_3.js","v":"9f31e0fda1","key":"ck_3","len":1000000},{"file":"m_ck_4.js","v":"d7709c4fb6","key":"ck_4","len":1000000},{"file":"m_ck_5.js","v":"e29978ee02","key":"ck_5","len":1000000},{"file":"m_ck_6.js","v":"53f9f06d29","key":"ck_6","len":1000000},{"file":"m_ck_7.js","v":"c51de278f1","key":"ck_7","len":498900},{"file":"m_ext_0.js","v":"164c4d998f","key":"ext_0","len":1000000},{"file":"m_ext_1.js","v":"e5f8ab8801","key":"ext_1","len":1000000},{"file":"m_ext_2.js","v":"018a3929d8","key":"ext_2","len":295212}], APP = {"file":"app.js","v":"ea5a053c1b"};
+  var bar = document.getElementById('load-bar'), i = 0;
+  function fail(f){ window.__fail && window.__fail('קובץ לא הגיע שלם: ' + f, 'נסו לרענן עם Ctrl+F5. אם זה חוזר, צלמו את המסך.'); }
+  function next(){
+    if (i >= LIST.length) {
+      var A = window.__A3 || {}, ck = [], ex = [];
+      Object.keys(A).sort(function(a,b){ return (+a.split('_')[1]) - (+b.split('_')[1]); }).forEach(function(k){ (k.indexOf('ck_') === 0 ? ck : ex).push(A[k]); });
+      window.GLB_CK = ck.join(''); window.GLB_EXT = ex.join(''); window.__A3 = null;
+      var s = document.createElement('script'); s.src = APP.file + '?v=' + APP.v;
+      s.onload = function(){ if (!window.__appEnd) fail(APP.file); }; s.onerror = function(){ fail(APP.file); };
+      document.body.appendChild(s); return;
+    }
+    var f = LIST[i], s = document.createElement('script'); s.src = f.file + '?v=' + f.v;
+    s.onload = function(){
+      if (f.end && !window[f.end]) return fail(f.file);
+      if (f.key && (!window.__A3 || !window.__A3[f.key] || window.__A3[f.key].length !== f.len)) return fail(f.file);
+      i++; if (bar) bar.style.width = Math.round(i / (LIST.length + 1) * 15) + '%'; next();
+    };
+    s.onerror = function(){ fail(f.file); };
+    document.body.appendChild(s);
+  }
+  next();
+})();
+</script>
+
+
+</body></html>
