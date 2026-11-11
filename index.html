@@ -366,5 +366,33 @@ const t = setInterval(() => { p += 2; pct.textContent = p < 100 ? `טוען… $
   route();
 })();
 </script>
+
+<!-- ===== מטוס A320 – נפתח בכתובת האתר עם #a320 בסוף. הקוד נטען רק כשנכנסים לכתובת הזו ===== -->
+<div id="a320View" hidden></div>
+<style>
+#a320View{position:fixed;inset:0;z-index:110;background:var(--bg);display:grid;place-items:center;padding:16px;overflow:auto}
+#a320View[hidden]{display:none}
+#a320View .a3-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:32px 24px;max-width:520px;width:100%;box-shadow:var(--shadow);display:grid;gap:12px}
+#a320View ul{margin:0;padding:0 1.2em;display:grid;gap:8px;line-height:1.5}
+#a320View .ok{color:#22a06b;font-weight:700}
+#a320View .bad{color:#d33;font-weight:700}
+#a320View a{color:var(--accent);font-weight:700}
+</style>
+<script>
+(() => {
+  const view = document.getElementById("a320View");
+  let loaded = false;
+  function route(){
+    const show = location.hash === "#a320";
+    view.hidden = !show;
+    if (show) document.body.style.overflow = "hidden";
+    else if (location.hash !== "#test") document.body.style.overflow = "";
+    if (show && !loaded) { loaded = true; const s = document.createElement("script"); s.src = "a320/check.js?v=" + Date.now(); document.body.appendChild(s); }
+    if (show) document.title = "מטוס A320";
+  }
+  addEventListener("hashchange", route);
+  route();
+})();
+</script>
 </body>
 </html>
