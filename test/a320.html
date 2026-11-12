@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>בדיקת קבצי המטוס</title>
+<style>
+:root{--bg:#f2f6fb;--card:#fff;--ink:#0b1e3a;--muted:#56657d;--ok:#22a06b;--bad:#d33}
+@media (prefers-color-scheme:dark){:root{--bg:#081427;--card:#0f2140;--ink:#eef3ff;--muted:#9fb0cc}}
+*{box-sizing:border-box;margin:0}
+body{font-family:system-ui,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding:16px}
+.card{background:var(--card);border-radius:20px;padding:24px 18px;max-width:560px;margin:0 auto;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+h1{font-size:1.4rem;margin-bottom:.4rem}
+p{color:var(--muted);line-height:1.6}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.95rem}
+td{padding:6px 4px;border-bottom:1px solid rgba(128,128,128,.2)}
+td.f{direction:ltr;text-align:left;font-family:ui-monospace,Consolas,monospace}
+.ok{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}
+#sum{margin-top:14px;font-weight:700;font-size:1.1rem}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>בדיקת קבצי המטוס</h1>
+  <p>הדף בודק כל קובץ בנפרד. כשהבדיקה מסתיימת, צלמו את המסך ושלחו.</p>
+  <table id="t"></table>
+  <div id="sum">בודק...</div>
+  <p style="margin-top:14px"><a href="../a320/app.html" style="color:inherit;font-weight:700">פתיחה ישירה של המטוס (בלי האתר מסביב)</a></p>
+</div>
+<script>
+var FILES=["../a320/app.html","../a320/data.js","../a320/app.js","../a320/m_ck_0.js","../a320/m_ck_1.js","../a320/m_ck_2.js","../a320/m_ck_3.js","../a320/m_ck_4.js","../a320/m_ck_5.js","../a320/m_ck_6.js","../a320/m_ck_7.js","../a320/m_ext_0.js","../a320/m_ext_1.js","../a320/m_ext_2.js"];
+var SIZE={"app.html":25907,"data.js":182727,"app.js":788865,"m_ck_7.js":498942,"m_ext_0.js":1000043,"m_ext_1.js":1000043,"m_ext_2.js":295255};
+var t=document.getElementById("t"),bad=0,i=0;
+function row(name,ok,msg){var r=t.insertRow();r.insertCell().textContent=ok?"✓":"✗";r.cells[0].className=ok?"ok":"bad";var c=r.insertCell();c.textContent=name;c.className="f";r.insertCell().textContent=msg;if(!ok)bad++;}
+function next(){
+  if(i>=FILES.length){document.getElementById("sum").innerHTML=bad?'<span class="bad">'+bad+' קבצים לא הגיעו כמו שצריך</span>':'<span class="ok">כל הקבצים הגיעו שלמים</span>';return;}
+  var f=FILES[i++],name=f.split("/").pop(),want=SIZE[name]||1000042,x=new XMLHttpRequest();
+  x.open("GET",f+"?v="+Date.now());
+  x.onload=function(){var n=x.responseText.length,b=new Blob([x.responseText]).size;var ok=x.status==200&&b==want;row(name,ok,"קוד "+x.status+" · "+Math.round(b/1024)+"KB"+(ok?"":" (צריך "+Math.round(want/1024)+"KB)"));next();};
+  x.onerror=function(){row(name,false,"נחסם / שגיאת רשת");next();};
+  x.send();
+}
+next();
+</script>
+</body>
+</html>
