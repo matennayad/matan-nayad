@@ -357,6 +357,7 @@ const t = setInterval(() => { p += 2; pct.textContent = p < 100 ? `טוען… $
   document.getElementById("tBack").onclick = e => { e.preventDefault(); history.replaceState(null, "", location.pathname); route(); };
   setInterval(() => clock.textContent = new Date().toLocaleTimeString("he-IL"), 1000);
   function route(){
+    if (window.__a3Page) { if (location.hash !== "#a320") location.reload(); return; }
     const show = location.hash === "#test";
     view.hidden = !show;
     document.body.style.overflow = show ? "hidden" : "";
@@ -384,11 +385,19 @@ const t = setInterval(() => { p += 2; pct.textContent = p < 100 ? `טוען… $
   const view = document.getElementById("a320View");
   let loaded = false;
   function route(){
+    if (window.__a3Page) { if (location.hash !== "#a320") location.reload(); return; }
     const show = location.hash === "#a320";
     view.hidden = !show;
     if (show) document.body.style.overflow = "hidden";
     else if (location.hash !== "#test") document.body.style.overflow = "";
-    if (show && !loaded) { loaded = true; const f = document.createElement("iframe"); f.src = "a320/app.html?v=" + Date.now(); f.title = "מטוס A320 בתלת-ממד"; f.allow = "fullscreen"; view.appendChild(f); }
+    if (show && !loaded) {
+      loaded = true;
+      // the plane is written into this same page, so it needs no separate HTML address
+      const s = document.createElement("script"); s.src = "a320/shell.js?v=" + Date.now();
+      s.onload = () => { if (!window.A3_SHELL) return; window.__a3Page = true; const html = window.A3_SHELL; window.A3_SHELL = null; document.open(); document.write(html); document.close(); };
+      s.onerror = () => { view.textContent = "טעינת המטוס נכשלה. נסו לרענן את הדף."; };
+      document.head.appendChild(s);
+    }
     if (show) document.title = "מטוס A320";
   }
   addEventListener("hashchange", route);
