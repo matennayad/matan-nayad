@@ -412,10 +412,16 @@ const t = setInterval(() => { p += 2; pct.textContent = p < 100 ? `טוען… $
   function route(){
     if (location.hash !== "#kvatzim-plus" || loaded) return;
     loaded = true;
+    // מסך טעינה, כדי שיהיה ברור שהדף בדרך (ולא האתר הרגיל)
+    const cover = document.createElement("div");
+    cover.style.cssText = "position:fixed;inset:0;z-index:200;background:#050816;color:#f4f7ff;display:grid;place-items:center;font:700 22px Rubik,system-ui,sans-serif;text-align:center;padding:16px";
+    cover.textContent = "טוען את קבצים פלוס…";
+    document.body.appendChild(cover); document.body.style.overflow = "hidden";
+    const slow = setTimeout(() => { cover.textContent = "הטעינה לוקחת יותר מהרגיל. אם יש סינון אינטרנט, ייתכן שהקובץ ממתין לאישור. נסו לרענן בעוד רגע."; }, 15000);
     // הדף נכתב לתוך אותו עמוד, כמו המטוס, ולכן לא צריך כתובת HTML נפרדת
     const s = document.createElement("script"); s.src = "kvatzim-plus/shell.js?v=" + Date.now();
-    s.onload = () => { if (!window.KP_SHELL) return; const html = window.KP_SHELL; window.KP_SHELL = null; document.open(); document.write(html); document.close(); };
-    s.onerror = () => { loaded = false; alert("טעינת הדף נכשלה. נסו לרענן."); };
+    s.onload = () => { clearTimeout(slow); if (!window.KP_SHELL) { cover.textContent = "טעינת הדף נכשלה. נסו לרענן."; return; } const html = window.KP_SHELL; window.KP_SHELL = null; document.open(); document.write(html); document.close(); };
+    s.onerror = () => { clearTimeout(slow); loaded = false; cover.textContent = "טעינת הדף נכשלה (ייתכן שהקובץ נחסם בסינון). נסו לרענן."; };
     document.head.appendChild(s);
   }
   addEventListener("hashchange", route);
