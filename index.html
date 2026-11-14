@@ -404,5 +404,23 @@ const t = setInterval(() => { p += 2; pct.textContent = p < 100 ? `טוען… $
   route();
 })();
 </script>
+
+<!-- ===== קבצים פלוס – דף נחיתה, נפתח בכתובת האתר עם #kvatzim-plus בסוף. הקוד נטען רק כשנכנסים לכתובת הזו ===== -->
+<script>
+(() => {
+  let loaded = false;
+  function route(){
+    if (location.hash !== "#kvatzim-plus" || loaded) return;
+    loaded = true;
+    // הדף נכתב לתוך אותו עמוד, כמו המטוס, ולכן לא צריך כתובת HTML נפרדת
+    const s = document.createElement("script"); s.src = "kvatzim-plus/shell.js?v=" + Date.now();
+    s.onload = () => { if (!window.KP_SHELL) return; const html = window.KP_SHELL; window.KP_SHELL = null; document.open(); document.write(html); document.close(); };
+    s.onerror = () => { loaded = false; alert("טעינת הדף נכשלה. נסו לרענן."); };
+    document.head.appendChild(s);
+  }
+  addEventListener("hashchange", route);
+  route();
+})();
+</script>
 </body>
 </html>
