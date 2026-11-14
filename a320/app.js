@@ -1,3 +1,4 @@
+window.__a3Join&&window.__a3Join();
 /* Hebrew explanations for cockpit controls and exterior parts */
 (function(){
 const M = {};   // exact name -> [panel, name, code, text]
