@@ -114,7 +114,7 @@ h2{font-size:clamp(34px,5vw,58px)}
 .card b{font-family:var(--fd);font-weight:400;font-size:26px;line-height:1.15}
 .card span{color:var(--soft)}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.gallery figure{margin:0;display:grid;gap:10px}
+.gallery figure{margin:0;display:grid;gap:10px;align-content:start}.gallery .wide{grid-column:1/-1}.shot img{display:block;width:100%;height:auto}
 .gallery figcaption{color:var(--soft);font-size:17px}
 .gallery figcaption b{color:var(--white)}
 
@@ -153,7 +153,7 @@ textarea{min-height:110px;resize:vertical}
 </style></head><body>
 {{SPRITE}}
 <div class="wrap">
-  <p class="note" role="note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>כל שמות הקבצים, הסרטים והשירים שמופיעים בדף בדויים ונועדו להמחשה בלבד, מטעמי זכויות יוצרים.</p>
+  <p class="note" role="note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>מטעמי זכויות יוצרים, שמות של תכנים בצילומי המסך טושטשו, והשמות בפס "חדש היום" בדויים ונועדו להמחשה בלבד.</p>
 
   <div class="top">
     <div class="brand"><div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M5 20V10a7 7 0 0 1 14 0v10"/><path d="M9 20v-9a3 3 0 0 1 6 0v9"/></svg></div><div><b>קבצים פלוס</b><small>DriveGate · תוסף לכרום</small></div></div>
@@ -169,7 +169,7 @@ textarea{min-height:110px;resize:vertical}
       <span class="copied" aria-live="polite"></span>
       <span class="fee">{{GEM}}<b>בתשלום סמלי</b> לכיסוי עלויות פיתוח ותחזוקה</span>
     </div>
-    <div class="stage"><div class="shot">{{HOME}}</div></div>
+    <div class="stage"><div class="shot"><img src="kvatzim-plus/img/home.webp" alt="דף הבית של התוסף" width="1910" height="748"></div></div>
   </section>
 
   <div class="ticker" aria-hidden="true"><div>{{TICKER}}{{TICKER}}</div></div>
@@ -207,10 +207,9 @@ textarea{min-height:110px;resize:vertical}
   <section class="sec">
     <h2>ככה זה <span class="grad">נראה</span></h2>
     <div class="gallery">
-      <figure><div class="shot">{{DRIVES}}</div><figcaption><b>אחסונים.</b> סרטים, סדרות, שירים ועוד, מסודרים.</figcaption></figure>
-      <figure><div class="shot">{{FOLDER}}</div><figcaption><b>תיקייה.</b> גודל, תאריך ומשך ליד כל סרט.</figcaption></figure>
-      <figure><div class="shot">{{LIST}}</div><figcaption><b>חדש היום.</b> כפתור עותק ליד כל קובץ.</figcaption></figure>
-      <figure><div class="shot">{{GRIDV}}</div><figcaption><b>שירים לפי אמנים.</b> רשת או רשימה, מיון לפי חדש, שם או גודל.</figcaption></figure>
+      <figure class="wide"><div class="shot"><img src="kvatzim-plus/img/drives.webp" alt="מסך האחסונים" width="1580" height="330" loading="lazy"></div><figcaption><b>אחסונים.</b> סרטים, סדרות, שירים ועוד, מסודרים.</figcaption></figure>
+      <figure><div class="shot"><img src="kvatzim-plus/img/folder.webp" alt="תיקייה עם תיקיות וקבצים" width="1580" height="705" loading="lazy"></div><figcaption><b>תיקייה.</b> גודל, תאריך ומשך ליד כל קובץ.</figcaption></figure>
+      <figure><div class="shot"><img src="kvatzim-plus/img/series.webp" alt="תיקייה עם עשרות תיקיות בתצוגת רשת" width="1560" height="665" loading="lazy"></div><figcaption><b>תצוגת רשת או רשימה.</b> מיון לפי חדש, שם או גודל.</figcaption></figure>
     </div>
   </section>
 

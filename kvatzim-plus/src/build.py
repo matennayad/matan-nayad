@@ -15,7 +15,7 @@ rep = {'{{UI_CSS}}': ns['CSS'].replace('aspect-ratio:var(--ar,16/8.6);', ''), '{
 for k, v in rep.items():
     t = t.replace(k, v)
 t = re.sub(r' style="--ar:[^"]*"', '', t)
-assert '{{' not in t and '<img' not in t
+assert '{{' not in t
 
 # כשמשנים את ה-# בכתובת – חוזרים לאתר הראשי
 t = t.replace('</body>', '<script>addEventListener("hashchange",function(){if(location.hash!=="#kvatzim-plus")location.reload()});</script>\n</body>')

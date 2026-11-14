@@ -109,7 +109,7 @@ h2{font-size:clamp(34px,5vw,58px)}
 .card b{font-family:var(--fd);font-weight:400;font-size:26px;line-height:1.15}
 .card span{color:var(--soft)}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.gallery figure{margin:0;display:grid;gap:10px}
+.gallery figure{margin:0;display:grid;gap:10px;align-content:start}.gallery .wide{grid-column:1/-1}.shot img{display:block;width:100%;height:auto}
 .gallery figcaption{color:var(--soft);font-size:17px}
 .gallery figcaption b{color:var(--white)}
 /* price + contact */
@@ -207,7 +207,7 @@ textarea{min-height:110px;resize:vertical}
 </defs></svg>
 <div class="wrap">
   
-<p class="note" role="note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>כל שמות הקבצים, הסרטים והשירים שמופיעים בדף בדויים ונועדו להמחשה בלבד, מטעמי זכויות יוצרים.</p>
+<p class="note" role="note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>מטעמי זכויות יוצרים, שמות של תכנים בצילומי המסך טושטשו, והשמות בפס "חדש היום" בדויים ונועדו להמחשה בלבד.</p>
   
 <div class="top">
     
@@ -235,31 +235,7 @@ textarea{min-height:110px;resize:vertical}
     </div>
     
 <div class="stage">
-<div class="shot">
-<div class="ui" role="img" aria-label="מסך מתוך התוסף">
-<div class="side">
-<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
-<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
-<div class="nav on"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
-<div class="nav"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
-<div class="nav"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
-<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
-<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
-<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
-<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
-<div class="top">
-<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים</div>
-<div class="avatar">מ</div></div>
-<div class="main">
-<h3>ערב טוב</h3>
-<div class="cards2">
-<div class="box"><b><svg class="i"><use href="#ui-bell"/></svg>עדכון אחרון מהמנהל</b><span>עלו 40 סרטים ושירים חדשים השבוע!</span></div>
-<div class="box"><b><svg class="i"><use href="#ui-mail"/></svg>הודעות</b><span>3 הודעות חדשות בצ׳אט הכללי</span></div></div>
-<div class="rows"><b><svg class="i"><use href="#ui-clock"/></svg>חדש היום בדרייב</b>
-<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm">משמרת לילה - עונה 2 פרק 5.mp4</span><span class="sz">612 MB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
-<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm">הנהג מהלילה האחרון (2026).mp4</span><span class="sz">2.1 GB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
-<div class="row"><span class="vid" style="color:#7b3fe4"><svg class="i"><use href="#ui-music"/></svg></span><span class="nm">עידן שלו - כמו פעם.mp3</span><span class="sz">8.4 MB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
-<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm">שלושה ימים בחולון.mp4</span><span class="sz">1.8 GB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div></div></div></div></div></div>
+<div class="shot"><img src="kvatzim-plus/img/home.webp" alt="דף הבית של התוסף" width="1910" height="748"></div></div>
   </section>
   
 <div class="ticker" aria-hidden="true">
@@ -321,178 +297,17 @@ textarea{min-height:110px;resize:vertical}
     
 <div class="gallery">
       
-<figure>
-<div class="shot">
-<div class="ui" role="img" aria-label="מסך מתוך התוסף">
-<div class="side">
-<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
-<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
-<div class="nav"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
-<div class="nav on"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
-<div class="nav"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
-<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
-<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
-<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
-<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
-<div class="top">
-<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים</div>
-<div class="avatar">מ</div></div>
-<div class="main">
-<h3>אחסונים</h3>
-<div class="tools"><span class="pill on"><svg class="i"><use href="#ui-check"/></svg>אחסונים שיתופיים</span><span class="pill">שותף איתי</span></div>
-<div class="grid">
-<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
-<div class="t">סרטים<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
-<div class="t">סרטים חדשים<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
-<div class="t">סדרות<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
-<div class="t">שירים<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
-<div class="t">שירים חדשים<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
-<div class="t">הופעות<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
-<div class="t">ילדים<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
-<div class="t">קומדיה<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div></div></div></div></div>
+<figure class="wide">
+<div class="shot"><img src="kvatzim-plus/img/drives.webp" alt="מסך האחסונים" width="1580" height="330" loading="lazy"></div>
 <figcaption><b>אחסונים.</b> סרטים, סדרות, שירים ועוד, מסודרים.</figcaption></figure>
       
 <figure>
-<div class="shot">
-<div class="ui" role="img" aria-label="מסך מתוך התוסף">
-<div class="side">
-<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
-<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
-<div class="nav"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
-<div class="nav on"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
-<div class="nav"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
-<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
-<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
-<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
-<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
-<div class="top">
-<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים</div>
-<div class="avatar">מ</div></div>
-<div class="main">
-<div class="crumbs">אחסונים <span>›</span> סרטים חדשים <span>›</span> תיקייה ראשית</div>
-<div class="tools"><span class="pill on"><svg class="i"><use href="#ui-check"/></svg>חדש קודם</span><span class="pill">שם</span><span class="pill">גודל</span></div>
-<div class="lbl">תיקיות</div>
-<div class="grid">
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">קומדיות</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">אקשן</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">דרמה</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">ישראלי</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">משפחה</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">דוקו</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">מותחנים</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">קלאסיקות</div><span class="dots">⋮</span></div></div>
-<div class="lbl">קבצים</div>
-<div class="grid">
-<div class="fcard">
-<div class="h"><span class="vid" style="color:#d93025"><svg class="i"><use href="#ui-video"/></svg></span><span>המבצע בנמל</span></div>
-<div class="m"><span>12 באוג׳ 2026</span>·<span dir="ltr">1.9 GB</span>·<span dir="ltr">1:41:20</span></div></div>
-<div class="fcard">
-<div class="h"><span class="vid" style="color:#d93025"><svg class="i"><use href="#ui-video"/></svg></span><span>השכן מקומה 4</span></div>
-<div class="m"><span>30 באוג׳ 2026</span>·<span dir="ltr">1.4 GB</span>·<span dir="ltr">1:28:05</span></div></div>
-<div class="fcard">
-<div class="h"><span class="vid" style="color:#d93025"><svg class="i"><use href="#ui-video"/></svg></span><span>הקיץ של רוני</span></div>
-<div class="m"><span>17 בספט׳ 2026</span>·<span dir="ltr">1.6 GB</span>·<span dir="ltr">1:35:44</span></div></div>
-<div class="fcard">
-<div class="h"><span class="vid" style="color:#d93025"><svg class="i"><use href="#ui-video"/></svg></span><span>בין העננים</span></div>
-<div class="m"><span>9 באוג׳ 2026</span>·<span dir="ltr">2.2 GB</span>·<span dir="ltr">1:52:10</span></div></div></div></div></div></div>
-<figcaption><b>תיקייה.</b> גודל, תאריך ומשך ליד כל סרט.</figcaption></figure>
+<div class="shot"><img src="kvatzim-plus/img/folder.webp" alt="תיקייה עם תיקיות וקבצים" width="1580" height="705" loading="lazy"></div>
+<figcaption><b>תיקייה.</b> גודל, תאריך ומשך ליד כל קובץ.</figcaption></figure>
       
 <figure>
-<div class="shot">
-<div class="ui" role="img" aria-label="מסך מתוך התוסף">
-<div class="side">
-<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
-<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
-<div class="nav"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
-<div class="nav"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
-<div class="nav on"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
-<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
-<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
-<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
-<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
-<div class="top">
-<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים</div>
-<div class="avatar">מ</div></div>
-<div class="main">
-<h3>חדש בדרייב</h3>
-<div class="tools"><span class="pill on">הכל</span><span class="pill">סרטונים</span><span class="pill">שירים</span></div>
-<div class="rows"><b><svg class="i"><use href="#ui-clock"/></svg>היום</b>
-<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm">משמרת לילה - עונה 2 פרק 5.mp4</span><span class="sz">612 MB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
-<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm">הנהג מהלילה האחרון (2026).mp4</span><span class="sz">2.1 GB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
-<div class="row"><span class="vid" style="color:#7b3fe4"><svg class="i"><use href="#ui-music"/></svg></span><span class="nm">עידן שלו - כמו פעם.mp3</span><span class="sz">8.4 MB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
-<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm">שלושה ימים בחולון.mp4</span><span class="sz">1.8 GB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
-<div class="row"><span class="vid" style="color:#7b3fe4"><svg class="i"><use href="#ui-music"/></svg></span><span class="nm">הלהקה מהשכונה - רוקדים עד הבוקר.mp3</span><span class="sz">9.1 MB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div></div></div></div></div>
-<figcaption><b>חדש היום.</b> כפתור עותק ליד כל קובץ.</figcaption></figure>
-      
-<figure>
-<div class="shot">
-<div class="ui" role="img" aria-label="מסך מתוך התוסף">
-<div class="side">
-<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
-<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
-<div class="nav"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
-<div class="nav on"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
-<div class="nav"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
-<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
-<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
-<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
-<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
-<div class="top">
-<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים</div>
-<div class="avatar">מ</div></div>
-<div class="main">
-<div class="crumbs">אחסונים <span>›</span> שירים <span>›</span> כל האמנים</div>
-<div class="tools"><span class="pill">חדש קודם</span><span class="pill on"><svg class="i"><use href="#ui-check"/></svg>שם</span><span class="pill">גודל</span></div>
-<div class="lbl">תיקיות</div>
-<div class="grid">
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">עידן שלו</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">נועם בר</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">הלהקה מהשכונה</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">אביב רון</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">דני מור</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">להקת גשר</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">איתי לוי</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">רועי אדם</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">שחר בן נון</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">להקת הצפון</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">מסיבת קיץ 2026</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">להיטי השנה</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">שקטים לנסיעה</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">מזרחית חדשה</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">ילדים שרים</div><span class="dots">⋮</span></div>
-<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
-<div class="t">הופעות חיות</div><span class="dots">⋮</span></div></div></div></div></div>
-<figcaption><b>שירים לפי אמנים.</b> רשת או רשימה, מיון לפי חדש, שם או גודל.</figcaption></figure>
+<div class="shot"><img src="kvatzim-plus/img/series.webp" alt="תיקייה עם עשרות תיקיות בתצוגת רשת" width="1560" height="665" loading="lazy"></div>
+<figcaption><b>תצוגת רשת או רשימה.</b> מיון לפי חדש, שם או גודל.</figcaption></figure>
     </div>
   </section>
   
