@@ -128,3 +128,71 @@ CSS += """
 .ui .g5 .fcard{padding:1cqw;font-size:1.25cqw}
 .ui .g5 .fcard .m{font-size:.95cqw;flex-wrap:wrap;white-space:normal;gap:.3cqw .5cqw}
 """
+
+# ===== "חדש בדרייב" – תצוגת הצ׳אט, לפי צילומי המסך. שמות התכנים מטושטשים =====
+CSS += """
+.ui .fd{display:grid;grid-template-columns:31% 1fr;flex:1;min-height:0;margin:-2cqw -2.2cqw;}
+.ui .convs{border-left:1px solid #e0e3e7;padding:1.8cqw 1.2cqw;display:grid;gap:.5cqw;align-content:start}
+.ui .convs h4{margin:0 0 .8cqw;font-size:1.9cqw;font-weight:700}
+.ui .conv{display:flex;align-items:center;gap:1cqw;padding:.9cqw 1cqw;border-radius:1.4cqw}
+.ui .conv.on{background:#d3e3fd}
+.ui .av{width:3.4cqw;height:3.4cqw;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.5cqw;flex:none}
+.ui .av svg.i{width:1.7cqw;height:1.7cqw}
+.ui .conv .t{flex:1;min-width:0;font-size:1.4cqw}
+.ui .conv .t small{display:block;color:#5f6368;font-size:1.15cqw;white-space:nowrap;overflow:hidden}
+.ui .conv time{align-self:flex-start;color:#5f6368;font-size:1.1cqw}
+.ui .feed{padding:1.8cqw 2cqw;display:grid;gap:1cqw;align-content:start;min-width:0}
+.ui .fh{display:flex;align-items:center;gap:1cqw}
+.ui .fh b{font-size:2cqw;display:block}
+.ui .fh small{color:#5f6368;font-size:1.15cqw}
+.ui .flt{display:flex;gap:.7cqw;flex-wrap:wrap;font-size:1.2cqw;padding-bottom:1cqw;border-bottom:1px solid #e0e3e7}
+.ui .flt .pill.scan{color:#0b57d0;border-color:#a8c7fa}
+.ui .day{justify-self:center;border:1px solid #e0e3e7;border-radius:99cqw;padding:.4cqw 1.4cqw;font-size:1.15cqw;font-weight:700;background:#fff}
+.ui .post{display:grid;grid-template-columns:3.4cqw 1fr;gap:.4cqw 1cqw}
+.ui .post .who{font-size:1.4cqw;font-weight:700;align-self:center}
+.ui .post .who time{font-weight:400;color:#5f6368;font-size:1.1cqw;margin-inline-start:.8cqw}
+.ui .fc{grid-column:2;display:flex;align-items:center;gap:1.1cqw;background:#f0f4f9;border-radius:1.2cqw;padding:1cqw 1.2cqw}
+.ui .fc .ico{width:3cqw;height:3cqw;border-radius:.8cqw;background:#fff;display:grid;place-items:center;color:#d93025;flex:none}
+.ui .fc .ico.au{color:#7b3fe4}
+.ui .fc .n{flex:1;min-width:0;font-size:1.35cqw}
+.ui .fc .n small{display:block;color:#5f6368;font-size:1.1cqw}
+"""
+NAV_AV = {'ס': '#7b3fe4', 'מ': '#0f766e', 'ש': '#1f56d6', 'ב': '#0f766e', 'ק': '#b45309'}
+CONVS = [('all', 'כל העדכונים', 'כל האחסונים יחד', ''), ('ס', 'סרטים חדש', 'תוכנית מוסתרת', '00:15'),
+         ('מ', 'מהדורות', 'שם מוסתר.mp4', '00:05'), ('ש', 'שירים', 'זמר - שיר מוסתר.mp3', '13 בנוב׳'),
+         ('ב', 'בדיקות', 'שם מוסתר', '9 בנוב׳')]
+def convs(active):
+    out = '<div class="convs"><h4>שיחות</h4>'
+    for k, n, prev, tm in CONVS:
+        av = f'<span class="av" style="background:#0b57d0">{ic("bell")}</span>' if k == 'all' else f'<span class="av" style="background:{NAV_AV[k]}">{k}</span>'
+        pv = prev if k == 'all' else nm(prev, True)
+        out += f'<div class="conv{" on" if k == active else ""}">{av}<div class="t">{n}<small>{pv}</small></div>{f"<time>{tm}</time>" if tm else ""}</div>'
+    return out + '</div>'
+def card(size, kind):
+    au = kind == 'au'
+    return (f'<div class="fc"><span class="ico{" au" if au else ""}">{ic("music" if au else "video")}</span>'
+            f'<div class="n">{nm("שם הקובץ מוסתר - זכויות יוצרים" + (".mp3" if au else ".mp4"), True)}<small><bdi dir="ltr">{size}</bdi> · {"MP3" if au else "MP4"} · {"שמע" if au else "וידאו"}</small></div></div>')
+def post(letter, who, tm, cards):
+    return (f'<div class="post"><span class="av" style="background:{NAV_AV[letter]}">{letter}</span><div class="who">{who}<time>{tm}</time></div>'
+            + ''.join(cards) + '</div>')
+def feed_head(icon_html, title, sub, audio_on=False):
+    return (f'<div class="fh">{icon_html}<div><b>{title}</b><small>{sub}</small></div></div>'
+            '<div class="flt"><span class="pill on">' + ic('check') + 'הכל</span><span class="pill">' + ic('video') + 'וידאו</span>'
+            '<span class="pill">' + ic('music') + 'אודיו</span><span class="pill scan">' + ic('search') + 'סרוק עכשיו</span></div>')
+FEED_ALL = frame('bell', '<div class="fd">' + convs('all') + '<div class="feed">'
+    + feed_head('<span class="av" style="background:#0b57d0">' + ic('bell') + '</span>', 'כל העדכונים', 'קבצים חדשים מכל האחסונים · נסרק לפני 5 דק׳')
+    + '<span class="day">אתמול</span>'
+    + post('ק', 'סרטים חדש › קבצים פלוס', '23:34', [card('1.3 GB', 'v')])
+    + post('מ', 'מהדורות › מהדורות ותוכניות', '23:43', [card('682 MB', 'v')])
+    + '<span class="day">היום</span>'
+    + post('מ', 'מהדורות › מהדורות ותוכניות', '00:05', [card('1.0 GB', 'v')])
+    + post('ק', 'סרטים חדש › קבצים פלוס', '00:07', [card('1.2 GB', 'v'), card('765 MB', 'v')])
+    + '</div></div>')
+FEED_SONGS = frame('bell', '<div class="fd">' + convs('ש') + '<div class="feed">'
+    + feed_head('<span class="av" style="background:#1f56d6">ש</span>', 'שירים', '82 קבצים בשבוע האחרון · נסרק לפני 6 דק׳')
+    + post('ש', 'שירים חדשים', '21:10', [card('7.8 MB', 'au')])
+    + '<span class="day">יום חמישי, 12 בנובמבר</span>'
+    + post('ש', 'שירים חדשים', '09:53', [card('7.1 MB', 'au')])
+    + '<span class="day">יום שישי, 13 בנובמבר</span>'
+    + post('ש', 'שירים חדשים', '07:02', [card('6.6 MB', 'au'), card('7.6 MB', 'au'), card('6.8 MB', 'au')])
+    + '</div></div>')

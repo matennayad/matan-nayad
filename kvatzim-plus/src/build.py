@@ -11,7 +11,7 @@ tick = ''.join(f'<span><b>חדש היום:</b> {x}</span>' for x in [
     'רחוב התאנה – פרק 3', 'הלהקה מהשכונה – אלבום חדש', 'אחי הקטן – הסרט'])
 rep = {'{{UI_CSS}}': ns['CSS'].replace('aspect-ratio:var(--ar,16/8.6);', ''), '{{SPRITE}}': ns['SPRITE'], '{{GEM}}': gem,
        '{{TICKER}}': tick, '{{HOME}}': ns['HOME'], '{{DRIVES}}': ns['DRIVES'], '{{FOLDER}}': ns['FOLDER'],
-       '{{LIST}}': ns['LIST'], '{{GRIDV}}': ns['GRIDV']}
+       '{{LIST}}': ns['LIST'], '{{GRIDV}}': ns['GRIDV'], '{{FEED_ALL}}': ns['FEED_ALL'], '{{FEED_SONGS}}': ns['FEED_SONGS']}
 for k, v in rep.items():
     t = t.replace(k, v)
 t = re.sub(r' style="--ar:[^"]*"', '', t)

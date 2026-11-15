@@ -197,6 +197,31 @@ textarea{min-height:110px;resize:vertical}
 .ui .g5 .tile .dots{font-size:1.1cqw}
 .ui .g5 .fcard{padding:1cqw;font-size:1.25cqw}
 .ui .g5 .fcard .m{font-size:.95cqw;flex-wrap:wrap;white-space:normal;gap:.3cqw .5cqw}
+.ui .fd{display:grid;grid-template-columns:31% 1fr;flex:1;min-height:0;margin:-2cqw -2.2cqw;}
+.ui .convs{border-left:1px solid #e0e3e7;padding:1.8cqw 1.2cqw;display:grid;gap:.5cqw;align-content:start}
+.ui .convs h4{margin:0 0 .8cqw;font-size:1.9cqw;font-weight:700}
+.ui .conv{display:flex;align-items:center;gap:1cqw;padding:.9cqw 1cqw;border-radius:1.4cqw}
+.ui .conv.on{background:#d3e3fd}
+.ui .av{width:3.4cqw;height:3.4cqw;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.5cqw;flex:none}
+.ui .av svg.i{width:1.7cqw;height:1.7cqw}
+.ui .conv .t{flex:1;min-width:0;font-size:1.4cqw}
+.ui .conv .t small{display:block;color:#5f6368;font-size:1.15cqw;white-space:nowrap;overflow:hidden}
+.ui .conv time{align-self:flex-start;color:#5f6368;font-size:1.1cqw}
+.ui .feed{padding:1.8cqw 2cqw;display:grid;gap:1cqw;align-content:start;min-width:0}
+.ui .fh{display:flex;align-items:center;gap:1cqw}
+.ui .fh b{font-size:2cqw;display:block}
+.ui .fh small{color:#5f6368;font-size:1.15cqw}
+.ui .flt{display:flex;gap:.7cqw;flex-wrap:wrap;font-size:1.2cqw;padding-bottom:1cqw;border-bottom:1px solid #e0e3e7}
+.ui .flt .pill.scan{color:#0b57d0;border-color:#a8c7fa}
+.ui .day{justify-self:center;border:1px solid #e0e3e7;border-radius:99cqw;padding:.4cqw 1.4cqw;font-size:1.15cqw;font-weight:700;background:#fff}
+.ui .post{display:grid;grid-template-columns:3.4cqw 1fr;gap:.4cqw 1cqw}
+.ui .post .who{font-size:1.4cqw;font-weight:700;align-self:center}
+.ui .post .who time{font-weight:400;color:#5f6368;font-size:1.1cqw;margin-inline-start:.8cqw}
+.ui .fc{grid-column:2;display:flex;align-items:center;gap:1.1cqw;background:#f0f4f9;border-radius:1.2cqw;padding:1cqw 1.2cqw}
+.ui .fc .ico{width:3cqw;height:3cqw;border-radius:.8cqw;background:#fff;display:grid;place-items:center;color:#d93025;flex:none}
+.ui .fc .ico.au{color:#7b3fe4}
+.ui .fc .n{flex:1;min-width:0;font-size:1.35cqw}
+.ui .fc .n small{display:block;color:#5f6368;font-size:1.1cqw}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="ui-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
@@ -324,6 +349,120 @@ textarea{min-height:110px;resize:vertical}
 <div class="card"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg><b>סל הורדות</b><span>אוספים מכמה תיקיות, ועותק לכולם בבת אחת.</span></div>
       
 <div class="card"><svg viewBox="0 0 24 24"><path d="M3 6h13M3 12h9M3 18h9"/><path d="M18 14v8M14 18h8"/></svg><b>רשימות ומעקב</b><span>שומרים לרשימות ומקבלים סימון כשתיקייה מתעדכנת.</span></div>
+    </div>
+  </section>
+  
+<section class="sec">
+    
+<div class="sec-head">
+<h2>חדש <span class="grad">בדרייב</span></h2>
+<p>כל יום עולים תכנים חדשים, ומגיעים אליך כמו בצ׳אט</p></div>
+    
+<div class="gallery">
+      
+<figure class="wide">
+<div class="shot">
+<div class="ui" role="img" aria-label="מסך מתוך התוסף">
+<div class="side">
+<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
+<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
+<div class="nav"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
+<div class="nav"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
+<div class="nav on"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
+<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
+<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
+<div class="top">
+<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים ( / )</div>
+<div class="avatar">T</div></div>
+<div class="main">
+<div class="fd">
+<div class="convs"><h4>שיחות</h4>
+<div class="conv on"><span class="av" style="background:#0b57d0"><svg class="i"><use href="#ui-bell"/></svg></span>
+<div class="t">כל העדכונים<small>כל האחסונים יחד</small></div></div>
+<div class="conv"><span class="av" style="background:#7b3fe4">ס</span>
+<div class="t">סרטים חדש<small><span class="bl" aria-hidden="true">תוכנית מוסתרת</span></small></div><time>00:15</time></div>
+<div class="conv"><span class="av" style="background:#0f766e">מ</span>
+<div class="t">מהדורות<small><span class="bl" aria-hidden="true">שם מוסתר.mp4</span></small></div><time>00:05</time></div>
+<div class="conv"><span class="av" style="background:#1f56d6">ש</span>
+<div class="t">שירים<small><span class="bl" aria-hidden="true">זמר - שיר מוסתר.mp3</span></small></div><time>13 בנוב׳</time></div>
+<div class="conv"><span class="av" style="background:#0f766e">ב</span>
+<div class="t">בדיקות<small><span class="bl" aria-hidden="true">שם מוסתר</span></small></div><time>9 בנוב׳</time></div></div>
+<div class="feed">
+<div class="fh"><span class="av" style="background:#0b57d0"><svg class="i"><use href="#ui-bell"/></svg></span>
+<div><b>כל העדכונים</b><small>קבצים חדשים מכל האחסונים · נסרק לפני 5 דק׳</small></div></div>
+<div class="flt"><span class="pill on"><svg class="i"><use href="#ui-check"/></svg>הכל</span><span class="pill"><svg class="i"><use href="#ui-video"/></svg>וידאו</span><span class="pill"><svg class="i"><use href="#ui-music"/></svg>אודיו</span><span class="pill scan"><svg class="i"><use href="#ui-search"/></svg>סרוק עכשיו</span></div><span class="day">אתמול</span>
+<div class="post"><span class="av" style="background:#b45309">ק</span>
+<div class="who">סרטים חדש › קבצים פלוס<time>23:34</time></div>
+<div class="fc"><span class="ico"><svg class="i"><use href="#ui-video"/></svg></span>
+<div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp4</span><small><bdi dir="ltr">1.3 GB</bdi> · MP4 · וידאו</small></div></div></div>
+<div class="post"><span class="av" style="background:#0f766e">מ</span>
+<div class="who">מהדורות › מהדורות ותוכניות<time>23:43</time></div>
+<div class="fc"><span class="ico"><svg class="i"><use href="#ui-video"/></svg></span>
+<div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp4</span><small><bdi dir="ltr">682 MB</bdi> · MP4 · וידאו</small></div></div></div><span class="day">היום</span>
+<div class="post"><span class="av" style="background:#0f766e">מ</span>
+<div class="who">מהדורות › מהדורות ותוכניות<time>00:05</time></div>
+<div class="fc"><span class="ico"><svg class="i"><use href="#ui-video"/></svg></span>
+<div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp4</span><small><bdi dir="ltr">1.0 GB</bdi> · MP4 · וידאו</small></div></div></div>
+<div class="post"><span class="av" style="background:#b45309">ק</span>
+<div class="who">סרטים חדש › קבצים פלוס<time>00:07</time></div>
+<div class="fc"><span class="ico"><svg class="i"><use href="#ui-video"/></svg></span>
+<div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp4</span><small><bdi dir="ltr">1.2 GB</bdi> · MP4 · וידאו</small></div></div>
+<div class="fc"><span class="ico"><svg class="i"><use href="#ui-video"/></svg></span>
+<div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp4</span><small><bdi dir="ltr">765 MB</bdi> · MP4 · וידאו</small></div></div></div></div></div></div></div></div>
+<figcaption><b>כל העדכונים.</b> מה עלה היום ואתמול, מכל האחסונים.</figcaption></figure>
+      
+<figure class="wide">
+<div class="shot">
+<div class="ui" role="img" aria-label="מסך מתוך התוסף">
+<div class="side">
+<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
+<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
+<div class="nav"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
+<div class="nav"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
+<div class="nav on"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
+<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
+<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
+<div class="top">
+<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים ( / )</div>
+<div class="avatar">T</div></div>
+<div class="main">
+<div class="fd">
+<div class="convs"><h4>שיחות</h4>
+<div class="conv"><span class="av" style="background:#0b57d0"><svg class="i"><use href="#ui-bell"/></svg></span>
+<div class="t">כל העדכונים<small>כל האחסונים יחד</small></div></div>
+<div class="conv"><span class="av" style="background:#7b3fe4">ס</span>
+<div class="t">סרטים חדש<small><span class="bl" aria-hidden="true">תוכנית מוסתרת</span></small></div><time>00:15</time></div>
+<div class="conv"><span class="av" style="background:#0f766e">מ</span>
+<div class="t">מהדורות<small><span class="bl" aria-hidden="true">שם מוסתר.mp4</span></small></div><time>00:05</time></div>
+<div class="conv on"><span class="av" style="background:#1f56d6">ש</span>
+<div class="t">שירים<small><span class="bl" aria-hidden="true">זמר - שיר מוסתר.mp3</span></small></div><time>13 בנוב׳</time></div>
+<div class="conv"><span class="av" style="background:#0f766e">ב</span>
+<div class="t">בדיקות<small><span class="bl" aria-hidden="true">שם מוסתר</span></small></div><time>9 בנוב׳</time></div></div>
+<div class="feed">
+<div class="fh"><span class="av" style="background:#1f56d6">ש</span>
+<div><b>שירים</b><small>82 קבצים בשבוע האחרון · נסרק לפני 6 דק׳</small></div></div>
+<div class="flt"><span class="pill on"><svg class="i"><use href="#ui-check"/></svg>הכל</span><span class="pill"><svg class="i"><use href="#ui-video"/></svg>וידאו</span><span class="pill"><svg class="i"><use href="#ui-music"/></svg>אודיו</span><span class="pill scan"><svg class="i"><use href="#ui-search"/></svg>סרוק עכשיו</span></div>
+<div class="post"><span class="av" style="background:#1f56d6">ש</span>
+<div class="who">שירים חדשים<time>21:10</time></div>
+<div class="fc"><span class="ico au"><svg class="i"><use href="#ui-music"/></svg></span>
+<div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp3</span><small><bdi dir="ltr">7.8 MB</bdi> · MP3 · שמע</small></div></div></div><span class="day">יום חמישי, 12 בנובמבר</span>
+<div class="post"><span class="av" style="background:#1f56d6">ש</span>
+<div class="who">שירים חדשים<time>09:53</time></div>
+<div class="fc"><span class="ico au"><svg class="i"><use href="#ui-music"/></svg></span>
+<div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp3</span><small><bdi dir="ltr">7.1 MB</bdi> · MP3 · שמע</small></div></div></div><span class="day">יום שישי, 13 בנובמבר</span>
+<div class="post"><span class="av" style="background:#1f56d6">ש</span>
+<div class="who">שירים חדשים<time>07:02</time></div>
+<div class="fc"><span class="ico au"><svg class="i"><use href="#ui-music"/></svg></span>
+<div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp3</span><small><bdi dir="ltr">6.6 MB</bdi> · MP3 · שמע</small></div></div>
+<div class="fc"><span class="ico au"><svg class="i"><use href="#ui-music"/></svg></span>
+<div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp3</span><small><bdi dir="ltr">7.6 MB</bdi> · MP3 · שמע</small></div></div>
+<div class="fc"><span class="ico au"><svg class="i"><use href="#ui-music"/></svg></span>
+<div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp3</span><small><bdi dir="ltr">6.8 MB</bdi> · MP3 · שמע</small></div></div></div></div></div></div></div></div>
+<figcaption><b>שירים.</b> כל שיר חדש שעלה השבוע, לפי ימים.</figcaption></figure>
     </div>
   </section>
   
