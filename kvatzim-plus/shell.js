@@ -108,6 +108,20 @@ h2{font-size:clamp(34px,5vw,58px)}
 .card svg{width:38px;height:38px;stroke:var(--cyan);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 8px rgba(56,214,255,.7))}
 .card b{font-family:var(--fd);font-weight:400;font-size:26px;line-height:1.15}
 .card span{color:var(--soft)}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tab{font:700 17px var(--fb);color:var(--white);background:var(--glass);border:1px solid var(--edge);border-radius:999px;padding:9px 20px;cursor:pointer;transition:background .2s}
+.tab.on{color:var(--night);background:var(--sun);border-color:var(--sun)}
+.tab:focus-visible{outline:3px solid var(--white);outline-offset:3px}
+.slides{width:100%;max-width:900px;margin-inline:auto}
+.slide{margin:0;display:none;gap:12px}
+.slide.on{display:grid;animation:fadein .4s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}}
+.slide figcaption{color:var(--soft);font-size:17px;text-align:center}
+.slide figcaption b{color:var(--white)}
+.slides .ui{aspect-ratio:16/9}
+.slides .ui .main{-webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent)}
+.hero .ui{aspect-ratio:16/9}
+.hero .ui .main{-webkit-mask-image:linear-gradient(#000 85%,transparent);mask-image:linear-gradient(#000 85%,transparent)}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 .gallery figure{margin:0;display:grid;gap:10px;align-content:start}.gallery .wide{grid-column:1/-1}.shot img{display:block;width:100%;height:auto}
 .gallery figcaption{color:var(--soft);font-size:17px}
@@ -355,12 +369,19 @@ textarea{min-height:110px;resize:vertical}
 <section class="sec">
     
 <div class="sec-head">
-<h2>חדש <span class="grad">בדרייב</span></h2>
+<h2>ככה זה <span class="grad">נראה</span></h2>
 <p>כל יום עולים תכנים חדשים, ומגיעים אליך כמו בצ׳אט</p></div>
     
-<div class="gallery">
+<div class="tabs" role="tablist">
+<button class="tab on" type="button" role="tab" aria-selected="true" data-slide="0">כל העדכונים</button>
+<button class="tab" type="button" role="tab" aria-selected="false" data-slide="1">שירים</button>
+<button class="tab" type="button" role="tab" aria-selected="false" data-slide="2">תיקייה</button>
+<button class="tab" type="button" role="tab" aria-selected="false" data-slide="3">אחסונים</button>
+<button class="tab" type="button" role="tab" aria-selected="false" data-slide="4">תצוגת רשת</button></div>
+    
+<div class="slides">
       
-<figure class="wide">
+<figure class="slide on" data-slide="0">
 <div class="shot">
 <div class="ui" role="img" aria-label="מסך מתוך התוסף">
 <div class="side">
@@ -413,7 +434,7 @@ textarea{min-height:110px;resize:vertical}
 <div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp4</span><small><bdi dir="ltr">765 MB</bdi> · MP4 · וידאו</small></div></div></div></div></div></div></div></div>
 <figcaption><b>כל העדכונים.</b> מה עלה היום ואתמול, מכל האחסונים.</figcaption></figure>
       
-<figure class="wide">
+<figure class="slide" data-slide="1">
 <div class="shot">
 <div class="ui" role="img" aria-label="מסך מתוך התוסף">
 <div class="side">
@@ -463,16 +484,8 @@ textarea{min-height:110px;resize:vertical}
 <div class="fc"><span class="ico au"><svg class="i"><use href="#ui-music"/></svg></span>
 <div class="n"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - זכויות יוצרים.mp3</span><small><bdi dir="ltr">6.8 MB</bdi> · MP3 · שמע</small></div></div></div></div></div></div></div></div>
 <figcaption><b>שירים.</b> כל שיר חדש שעלה השבוע, לפי ימים.</figcaption></figure>
-    </div>
-  </section>
-  
-<section class="sec">
-    
-<h2>ככה זה <span class="grad">נראה</span></h2>
-    
-<div class="gallery">
       
-<figure class="wide">
+<figure class="slide" data-slide="2">
 <div class="shot">
 <div class="ui" role="img" aria-label="מסך מתוך התוסף">
 <div class="side">
@@ -543,7 +556,7 @@ textarea{min-height:110px;resize:vertical}
 <div class="m"><span>3 באוג׳ 2026</span>·<span dir="ltr">1.5 GB</span>·<span dir=ltr>2:05:19</span></div></div></div></div></div></div>
 <figcaption><b>תיקייה.</b> גודל, תאריך ומשך ליד כל קובץ.</figcaption></figure>
       
-<figure>
+<figure class="slide" data-slide="3">
 <div class="shot">
 <div class="ui" role="img" aria-label="מסך מתוך התוסף">
 <div class="side">
@@ -579,7 +592,7 @@ textarea{min-height:110px;resize:vertical}
 <div class="t">שירים<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div></div></div></div></div>
 <figcaption><b>אחסונים.</b> סרטים, סדרות, שירים ועוד, מסודרים.</figcaption></figure>
       
-<figure>
+<figure class="slide" data-slide="4">
 <div class="shot">
 <div class="ui" role="img" aria-label="מסך מתוך התוסף">
 <div class="side">
@@ -723,6 +736,15 @@ textarea{min-height:110px;resize:vertical}
 <script>
 (function () {
   var TO = "menaka05567@gmail.com";
+  // החלפת מסכים בלשוניות, ומעבר אוטומטי עד שלוחצים
+  var tabs = document.querySelectorAll(".tab"), slides = document.querySelectorAll(".slide"), cur = 0, auto = null;
+  function show(i) {
+    cur = i;
+    tabs.forEach(function (t, k) { t.classList.toggle("on", k === i); t.setAttribute("aria-selected", k === i ? "true" : "false"); });
+    slides.forEach(function (f, k) { f.classList.toggle("on", k === i); });
+  }
+  tabs.forEach(function (t, k) { t.addEventListener("click", function () { clearInterval(auto); show(k); }); });
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) auto = setInterval(function () { show((cur + 1) % slides.length); }, 6000);
   // מעבר לטופס בלי לשנות את ה-# בכתובת (שינוי ה-# מחזיר לאתר הראשי)
   document.querySelectorAll("[data-go]").forEach(function (b) {
     b.addEventListener("click", function () {
