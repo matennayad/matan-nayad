@@ -2,7 +2,7 @@
 import re
 CSS = r'''
 /* ===== מסכי התוסף, בנויים ב-HTML ===== */
-.ui{container-type:inline-size;width:100%;aspect-ratio:var(--ar,16/8.6);background:#f3f6fc;color:#1f1f1f;font-family:"Assistant",system-ui,sans-serif;display:grid;grid-template-columns:18% 1fr;grid-template-rows:auto 1fr;overflow:hidden;text-align:right;direction:rtl}
+.ui{container-type:inline-size;width:100%;aspect-ratio:var(--ar,16/8.6);background:#f3f6fc;color:#1f1f1f;font-family:"Assistant",system-ui,sans-serif;display:grid;grid-template-columns:16% 1fr;grid-template-rows:auto 1fr;overflow:hidden;text-align:right;direction:rtl}
 .ui *{box-sizing:border-box}
 .ui svg.i{width:1.9cqw;height:1.9cqw;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .ui .side{grid-row:1/3;padding:1.6cqw 1.2cqw;display:flex;flex-direction:column;gap:.5cqw;font-size:1.55cqw}
@@ -39,6 +39,9 @@ CSS = r'''
 .ui .lbl{font-size:1.5cqw;font-weight:700}
 .ui .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw}
 .ui .g3{grid-template-columns:repeat(3,1fr)}
+.ui .g5{grid-template-columns:repeat(5,1fr)}
+/* שמות מטושטשים: מתחת לטשטוש יש טקסט כללי, לא השם האמיתי */
+.ui .bl{filter:blur(.32cqw);user-select:none;opacity:.85}
 .ui .tile{background:#f0f4f9;border-radius:1.2cqw;padding:1.2cqw 1.3cqw;display:flex;align-items:center;gap:.9cqw;font-size:1.45cqw;min-width:0}
 .ui .tile .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ui .tile small{display:block;color:#5f6368;font-size:1.1cqw}
@@ -70,17 +73,58 @@ NAV = [('home','דף הבית'),('drive','אחסונים'),('bell','חדש בד�
 def frame(active, main, ar='16/8.6'):
     side = '<div class="side"><div class="logo"><i>'+'<svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg>'+'</i><div><b>DriveGate</b><small>קבצים פלוס</small></div></div>' + ''.join(
         f'<div class="nav{" on" if k==active else ""}">{ic(k)}{t}{"<em>+99</em>" if k=="bell" else ""}</div>' for k,t in NAV) + '</div>'
-    top = f'<div class="top"><div class="search">{ic("search")}חיפוש בכל האחסונים</div><div class="avatar">מ</div></div>'
+    top = f'<div class="top"><div class="search">{ic("search")}חיפוש בכל האחסונים ( / )</div><div class="avatar">T</div></div>'
     return f'<div class="ui" style="--ar:{ar}" role="img" aria-label="מסך מתוך התוסף">{side}{top}<div class="main">{main}</div></div>'
 def rows(items):
     return ''.join(f'<div class="row"><span class="vid"{" style=\"color:#7b3fe4\"" if n.endswith(".mp3") else ""}>{ic("music" if n.endswith(".mp3") else "video")}</span><span class="nm">{n}</span><span class="sz">{s}</span><span class="cp">{ic("copy")}עותק</span></div>' for n,s in items)
-NEW = [('משמרת לילה - עונה 2 פרק 5.mp4','612 MB'),('הנהג מהלילה האחרון (2026).mp4','2.1 GB'),('עידן שלו - כמו פעם.mp3','8.4 MB'),('שלושה ימים בחולון.mp4','1.8 GB'),('הלהקה מהשכונה - רוקדים עד הבוקר.mp3','9.1 MB')]
-HOME = frame('home', '<h3>ערב טוב</h3><div class="cards2"><div class="box"><b>'+ic('bell')+'עדכון אחרון מהמנהל</b><span>עלו 40 סרטים ושירים חדשים השבוע!</span></div><div class="box"><b>'+ic('mail')+'הודעות</b><span>3 הודעות חדשות בצ׳אט הכללי</span></div></div><div class="rows"><b>'+ic('clock')+'חדש היום בדרייב</b>'+rows(NEW[:4])+'</div>')
-DRV = ['סרטים','סרטים חדשים','סדרות','שירים','שירים חדשים','הופעות','ילדים','קומדיה']
-DRIVES = frame('drive', '<h3>אחסונים</h3><div class="tools"><span class="pill on">'+ic('check')+'אחסונים שיתופיים</span><span class="pill">שותף איתי</span></div><div class="grid">'+''.join(f'<div class="tile">{ic("drive")}<div class="t">{d}<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>' for d in DRV)+'</div>', '16/7')
-FOLD = ['קומדיות','אקשן','דרמה','ישראלי','משפחה','דוקו','מותחנים','קלאסיקות']
-FILES = [('המבצע בנמל','12 באוג׳ 2026','1.9 GB','1:41:20'),('השכן מקומה 4','30 באוג׳ 2026','1.4 GB','1:28:05'),('הקיץ של רוני','17 בספט׳ 2026','1.6 GB','1:35:44'),('בין העננים','9 באוג׳ 2026','2.2 GB','1:52:10')]
-FOLDER = frame('drive', '<div class="crumbs">אחסונים <span>›</span> סרטים חדשים <span>›</span> תיקייה ראשית</div><div class="tools"><span class="pill on">'+ic('check')+'חדש קודם</span><span class="pill">שם</span><span class="pill">גודל</span></div><div class="lbl">תיקיות</div><div class="grid">'+''.join(f'<div class="tile">{ic("folder")}<div class="t">{f}</div><span class="dots">⋮</span></div>' for f in FOLD)+'</div><div class="lbl">קבצים</div><div class="grid">'+''.join(f'<div class="fcard"><div class="h"><span class="vid" style="color:#d93025">{ic("video")}</span><span>{n}</span></div><div class="m"><span>{d}</span>·<span dir="ltr">{s}</span>·<span dir="ltr">{t}</span></div></div>' for n,d,s,t in FILES)+'</div>', '16/9.4')
-LIST = frame('bell', '<h3>חדש בדרייב</h3><div class="tools"><span class="pill on">הכל</span><span class="pill">סרטונים</span><span class="pill">שירים</span></div><div class="rows"><b>'+ic('clock')+'היום</b>'+rows(NEW)+'</div>', '16/8.6')
-GRIDV = frame('drive', '<div class="crumbs">אחסונים <span>›</span> שירים <span>›</span> כל האמנים</div><div class="tools"><span class="pill">חדש קודם</span><span class="pill on">'+ic('check')+'שם</span><span class="pill">גודל</span></div><div class="lbl">תיקיות</div><div class="grid">'+''.join(f'<div class="tile">{ic("folder")}<div class="t">{f}</div><span class="dots">⋮</span></div>' for f in ['עידן שלו','נועם בר','הלהקה מהשכונה','אביב רון','דני מור','להקת גשר','איתי לוי','רועי אדם','שחר בן נון','להקת הצפון','מסיבת קיץ 2026','להיטי השנה','שקטים לנסיעה','מזרחית חדשה','ילדים שרים','הופעות חיות'])+'</div>', '16/8.2')
 
+# ===== התוכן: לפי צילומי המסך המקוריים. שמות של תוכניות/סדרות מוחלפים בטקסט כללי ומטושטשים (bl) =====
+def nm(t, blur=False):
+    return f'<span class="bl" aria-hidden="true">{t}</span>' if blur else t
+HID = ['שם הקובץ מוסתר - עונה 1 פרק 21.mp4', 'שם הקובץ מוסתר - עונה 1 פרק 22.mp4', 'שם הקובץ מוסתר - עונה 1 פרק 23.mp4',
+       'שם הקובץ מוסתר - עונה 1 פרק 24.mp4', 'שם מוסתר.mp4', 'שם הקובץ מוסתר כאן בגלל זכויות יוצרים.mp4']
+def rows(items):
+    return ''.join(f'<div class="row"><span class="vid">{ic("video")}</span><span class="nm">{nm(n, True)}</span><span class="sz">{s}</span><span class="cp">{ic("copy")}עותק</span></div>' for n, s in items)
+HOME = frame('home', '<h3>לילה טוב</h3><div class="cards2"><div class="box"><b>' + ic('bell') + 'עדכון אחרון מהמנהל</b><span>אין עדיין עדכונים.</span></div>'
+             '<div class="box"><b>' + ic('mail') + 'הודעות</b><span style="font-size:2.6cqw;color:#1f1f1f">✓</span><span>קראת הכל</span><b style="font-size:1.4cqw">פתיחת ההודעות</b></div></div>'
+             '<div class="rows"><b>' + ic('clock') + 'חדש היום בדרייב</b>' + rows(list(zip(HID, ['557 MB', '604 MB', '650 MB', '819 MB', '2.2 GB', '2.1 GB']))) + '</div>')
+
+def tiles(items, icon):
+    out = ''
+    for t in items:
+        name, blur, sub = (t + (None,) * 3)[:3] if isinstance(t, tuple) else (t, False, None)
+        out += f'<div class="tile">{ic(icon)}<div class="t">{nm(name, blur)}{f"<small>{sub}</small>" if sub else ""}</div><span class="dots">⋮</span></div>'
+    return out
+
+DRIVES = frame('drive', '<h3>אחסונים</h3><div class="tools"><span class="pill on">' + ic('check') + 'אחסונים שיתופיים</span><span class="pill">שותף איתי</span></div>'
+               '<div class="grid g5">' + tiles([(d, False, 'אחסון שיתופי') for d in ['בדיקות', 'בדיקות 2', 'היסטוריה', 'מהדורות', 'סרטים', 'סרטים חדש', 'שירים']], 'drive') + '</div>')
+
+FOLD = [('מערכונים כשרים',), ('שם מוסתר', True), ('שם התוכנית מוסתר', True), ('שם מוסתר', True), ('סטנדאפ',),
+        ('**סרטים**',), ('**סדרות**',), ('תקצירים מונדיאל',), ('סרטי שואה',), ('סרטים חדשים',),
+        ('שם התוכנית מוסתר', True), ('שירים',), ('רסלינג ישראל',), ('בקשות מיוחדות',)]
+FILES = [('17 בספט׳ 2026', '77.1 MB', '1:48'), ('17 בספט׳ 2026', '1.6 GB', ''), ('30 באוג׳ 2026', '398 MB', '24:13'),
+         ('12 באוג׳ 2026', '1.1 GB', '1:33:56'), ('9 באוג׳ 2026', '1.1 GB', '16:46'), ('3 באוג׳ 2026', '1.5 GB', '2:05:19')]
+def fcards(items):
+    return ''.join(f'<div class="fcard"><div class="h"><span class="vid" style="color:#d93025">{ic("video")}</span><span>{nm("שם הקובץ מוסתר", True)}</span></div>'
+                   f'<div class="m"><span>{d}</span>·<span dir="ltr">{s}</span>{"·<span dir=ltr>" + t + "</span>" if t else ""}</div></div>' for d, s, t in items)
+CRUMB = 'אחסונים <span>›</span> זמן קיץ/אלול תשפ״ו <span>›</span> תיקיה ראשית'
+FOLDER = frame('drive', f'<div class="crumbs">{CRUMB}</div><div class="tools"><span class="pill on">' + ic('check') + 'חדש קודם</span><span class="pill">שם</span><span class="pill">גודל</span></div>'
+               '<div class="lbl">תיקיות</div><div class="grid g5">' + tiles(FOLD, 'folder') + '</div>'
+               '<div class="lbl">קבצים</div><div class="grid g5">' + fcards(FILES) + '</div>')
+
+SER = ['שם מוסתר', 'שם הסדרה מוסתר', 'שם מוסתר כאן', 'שם הסדרה', 'שם מוסתר לגמרי']
+GRID_ITEMS = [(SER[i % 5], True) for i in range(40)]
+GRID_ITEMS[25] = ('שם הסדרה', True, '7 קבצים · 2.7 GB')
+GRIDV = frame('drive', f'<div class="crumbs">{CRUMB} <span>›</span> **סדרות**</div><div class="tools"><span class="pill">חדש קודם</span><span class="pill on">' + ic('check') + 'שם</span><span class="pill">גודל</span></div>'
+              '<div class="lbl">תיקיות</div><div class="grid g5">' + tiles(GRID_ITEMS, 'folder') + '</div>')
+LIST = HOME
+
+CSS += """
+.ui .g5{gap:.8cqw}
+.ui .nav{white-space:nowrap;font-size:1.4cqw;gap:.8cqw;padding:.7cqw .9cqw}
+.ui .g5 .tile{padding:1cqw 1cqw;gap:.6cqw;font-size:1.3cqw}
+.ui .g5 .tile svg.i{width:1.6cqw;height:1.6cqw}
+.ui .g5 .tile .dots{font-size:1.1cqw}
+.ui .g5 .fcard{padding:1cqw;font-size:1.25cqw}
+.ui .g5 .fcard .m{font-size:.95cqw;flex-wrap:wrap;white-space:normal;gap:.3cqw .5cqw}
+"""

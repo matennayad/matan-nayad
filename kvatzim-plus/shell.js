@@ -142,7 +142,7 @@ textarea{min-height:110px;resize:vertical}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 /* ===== מסכי התוסף, בנויים ב-HTML ===== */
-.ui{container-type:inline-size;width:100%;background:#f3f6fc;color:#1f1f1f;font-family:"Assistant",system-ui,sans-serif;display:grid;grid-template-columns:18% 1fr;grid-template-rows:auto 1fr;overflow:hidden;text-align:right;direction:rtl}
+.ui{container-type:inline-size;width:100%;background:#f3f6fc;color:#1f1f1f;font-family:"Assistant",system-ui,sans-serif;display:grid;grid-template-columns:16% 1fr;grid-template-rows:auto 1fr;overflow:hidden;text-align:right;direction:rtl}
 .ui *{box-sizing:border-box}
 .ui svg.i{width:1.9cqw;height:1.9cqw;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .ui .side{grid-row:1/3;padding:1.6cqw 1.2cqw;display:flex;flex-direction:column;gap:.5cqw;font-size:1.55cqw}
@@ -179,6 +179,9 @@ textarea{min-height:110px;resize:vertical}
 .ui .lbl{font-size:1.5cqw;font-weight:700}
 .ui .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw}
 .ui .g3{grid-template-columns:repeat(3,1fr)}
+.ui .g5{grid-template-columns:repeat(5,1fr)}
+/* שמות מטושטשים: מתחת לטשטוש יש טקסט כללי, לא השם האמיתי */
+.ui .bl{filter:blur(.32cqw);user-select:none;opacity:.85}
 .ui .tile{background:#f0f4f9;border-radius:1.2cqw;padding:1.2cqw 1.3cqw;display:flex;align-items:center;gap:.9cqw;font-size:1.45cqw;min-width:0}
 .ui .tile .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ui .tile small{display:block;color:#5f6368;font-size:1.1cqw}
@@ -187,6 +190,13 @@ textarea{min-height:110px;resize:vertical}
 .ui .fcard .h{display:flex;align-items:center;gap:.8cqw;min-width:0}
 .ui .fcard .h span{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
 .ui .fcard .m{color:#5f6368;font-size:1.05cqw;display:flex;gap:.6cqw;white-space:nowrap;overflow:hidden}
+.ui .g5{gap:.8cqw}
+.ui .nav{white-space:nowrap;font-size:1.4cqw;gap:.8cqw;padding:.7cqw .9cqw}
+.ui .g5 .tile{padding:1cqw 1cqw;gap:.6cqw;font-size:1.3cqw}
+.ui .g5 .tile svg.i{width:1.6cqw;height:1.6cqw}
+.ui .g5 .tile .dots{font-size:1.1cqw}
+.ui .g5 .fcard{padding:1cqw;font-size:1.25cqw}
+.ui .g5 .fcard .m{font-size:.95cqw;flex-wrap:wrap;white-space:normal;gap:.3cqw .5cqw}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="ui-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
@@ -235,7 +245,33 @@ textarea{min-height:110px;resize:vertical}
     </div>
     
 <div class="stage">
-<div class="shot"><img src="kvatzim-plus/img/home.webp" alt="דף הבית של התוסף" width="1910" height="748"></div></div>
+<div class="shot">
+<div class="ui" role="img" aria-label="מסך מתוך התוסף">
+<div class="side">
+<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
+<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
+<div class="nav on"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
+<div class="nav"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
+<div class="nav"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
+<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
+<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
+<div class="top">
+<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים ( / )</div>
+<div class="avatar">T</div></div>
+<div class="main">
+<h3>לילה טוב</h3>
+<div class="cards2">
+<div class="box"><b><svg class="i"><use href="#ui-bell"/></svg>עדכון אחרון מהמנהל</b><span>אין עדיין עדכונים.</span></div>
+<div class="box"><b><svg class="i"><use href="#ui-mail"/></svg>הודעות</b><span style="font-size:2.6cqw;color:#1f1f1f">✓</span><span>קראת הכל</span><b style="font-size:1.4cqw">פתיחת ההודעות</b></div></div>
+<div class="rows"><b><svg class="i"><use href="#ui-clock"/></svg>חדש היום בדרייב</b>
+<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - עונה 1 פרק 21.mp4</span></span><span class="sz">557 MB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
+<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - עונה 1 פרק 22.mp4</span></span><span class="sz">604 MB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
+<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - עונה 1 פרק 23.mp4</span></span><span class="sz">650 MB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
+<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm"><span class="bl" aria-hidden="true">שם הקובץ מוסתר - עונה 1 פרק 24.mp4</span></span><span class="sz">819 MB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
+<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm"><span class="bl" aria-hidden="true">שם מוסתר.mp4</span></span><span class="sz">2.2 GB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div>
+<div class="row"><span class="vid"><svg class="i"><use href="#ui-video"/></svg></span><span class="nm"><span class="bl" aria-hidden="true">שם הקובץ מוסתר כאן בגלל זכויות יוצרים.mp4</span></span><span class="sz">2.1 GB</span><span class="cp"><svg class="i"><use href="#ui-copy"/></svg>עותק</span></div></div></div></div></div></div>
   </section>
   
 <div class="ticker" aria-hidden="true">
@@ -298,15 +334,213 @@ textarea{min-height:110px;resize:vertical}
 <div class="gallery">
       
 <figure class="wide">
-<div class="shot"><img src="kvatzim-plus/img/drives.webp" alt="מסך האחסונים" width="1580" height="330" loading="lazy"></div>
-<figcaption><b>אחסונים.</b> סרטים, סדרות, שירים ועוד, מסודרים.</figcaption></figure>
-      
-<figure>
-<div class="shot"><img src="kvatzim-plus/img/folder.webp" alt="תיקייה עם תיקיות וקבצים" width="1580" height="705" loading="lazy"></div>
+<div class="shot">
+<div class="ui" role="img" aria-label="מסך מתוך התוסף">
+<div class="side">
+<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
+<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
+<div class="nav"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
+<div class="nav on"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
+<div class="nav"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
+<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
+<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
+<div class="top">
+<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים ( / )</div>
+<div class="avatar">T</div></div>
+<div class="main">
+<div class="crumbs">אחסונים <span>›</span> זמן קיץ/אלול תשפ״ו <span>›</span> תיקיה ראשית</div>
+<div class="tools"><span class="pill on"><svg class="i"><use href="#ui-check"/></svg>חדש קודם</span><span class="pill">שם</span><span class="pill">גודל</span></div>
+<div class="lbl">תיקיות</div>
+<div class="grid g5">
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t">מערכונים כשרים</div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם התוכנית מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t">סטנדאפ</div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t">**סרטים**</div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t">**סדרות**</div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t">תקצירים מונדיאל</div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t">סרטי שואה</div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t">סרטים חדשים</div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם התוכנית מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t">שירים</div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t">רסלינג ישראל</div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t">בקשות מיוחדות</div><span class="dots">⋮</span></div></div>
+<div class="lbl">קבצים</div>
+<div class="grid g5">
+<div class="fcard">
+<div class="h"><span class="vid" style="color:#d93025"><svg class="i"><use href="#ui-video"/></svg></span><span><span class="bl" aria-hidden="true">שם הקובץ מוסתר</span></span></div>
+<div class="m"><span>17 בספט׳ 2026</span>·<span dir="ltr">77.1 MB</span>·<span dir=ltr>1:48</span></div></div>
+<div class="fcard">
+<div class="h"><span class="vid" style="color:#d93025"><svg class="i"><use href="#ui-video"/></svg></span><span><span class="bl" aria-hidden="true">שם הקובץ מוסתר</span></span></div>
+<div class="m"><span>17 בספט׳ 2026</span>·<span dir="ltr">1.6 GB</span></div></div>
+<div class="fcard">
+<div class="h"><span class="vid" style="color:#d93025"><svg class="i"><use href="#ui-video"/></svg></span><span><span class="bl" aria-hidden="true">שם הקובץ מוסתר</span></span></div>
+<div class="m"><span>30 באוג׳ 2026</span>·<span dir="ltr">398 MB</span>·<span dir=ltr>24:13</span></div></div>
+<div class="fcard">
+<div class="h"><span class="vid" style="color:#d93025"><svg class="i"><use href="#ui-video"/></svg></span><span><span class="bl" aria-hidden="true">שם הקובץ מוסתר</span></span></div>
+<div class="m"><span>12 באוג׳ 2026</span>·<span dir="ltr">1.1 GB</span>·<span dir=ltr>1:33:56</span></div></div>
+<div class="fcard">
+<div class="h"><span class="vid" style="color:#d93025"><svg class="i"><use href="#ui-video"/></svg></span><span><span class="bl" aria-hidden="true">שם הקובץ מוסתר</span></span></div>
+<div class="m"><span>9 באוג׳ 2026</span>·<span dir="ltr">1.1 GB</span>·<span dir=ltr>16:46</span></div></div>
+<div class="fcard">
+<div class="h"><span class="vid" style="color:#d93025"><svg class="i"><use href="#ui-video"/></svg></span><span><span class="bl" aria-hidden="true">שם הקובץ מוסתר</span></span></div>
+<div class="m"><span>3 באוג׳ 2026</span>·<span dir="ltr">1.5 GB</span>·<span dir=ltr>2:05:19</span></div></div></div></div></div></div>
 <figcaption><b>תיקייה.</b> גודל, תאריך ומשך ליד כל קובץ.</figcaption></figure>
       
 <figure>
-<div class="shot"><img src="kvatzim-plus/img/series.webp" alt="תיקייה עם עשרות תיקיות בתצוגת רשת" width="1560" height="665" loading="lazy"></div>
+<div class="shot">
+<div class="ui" role="img" aria-label="מסך מתוך התוסף">
+<div class="side">
+<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
+<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
+<div class="nav"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
+<div class="nav on"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
+<div class="nav"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
+<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
+<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
+<div class="top">
+<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים ( / )</div>
+<div class="avatar">T</div></div>
+<div class="main">
+<h3>אחסונים</h3>
+<div class="tools"><span class="pill on"><svg class="i"><use href="#ui-check"/></svg>אחסונים שיתופיים</span><span class="pill">שותף איתי</span></div>
+<div class="grid g5">
+<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
+<div class="t">בדיקות<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
+<div class="t">בדיקות 2<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
+<div class="t">היסטוריה<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
+<div class="t">מהדורות<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
+<div class="t">סרטים<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
+<div class="t">סרטים חדש<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-drive"/></svg>
+<div class="t">שירים<small>אחסון שיתופי</small></div><span class="dots">⋮</span></div></div></div></div></div>
+<figcaption><b>אחסונים.</b> סרטים, סדרות, שירים ועוד, מסודרים.</figcaption></figure>
+      
+<figure>
+<div class="shot">
+<div class="ui" role="img" aria-label="מסך מתוך התוסף">
+<div class="side">
+<div class="logo"><i><svg viewBox="0 0 24 24"><use href="#ui-gate"/></svg></i>
+<div><b>DriveGate</b><small>קבצים פלוס</small></div></div>
+<div class="nav"><svg class="i"><use href="#ui-home"/></svg>דף הבית</div>
+<div class="nav on"><svg class="i"><use href="#ui-drive"/></svg>אחסונים</div>
+<div class="nav"><svg class="i"><use href="#ui-bell"/></svg>חדש בדרייב<em>+99</em></div>
+<div class="nav"><svg class="i"><use href="#ui-mail"/></svg>הודעות</div>
+<div class="nav"><svg class="i"><use href="#ui-layers"/></svg>העותקים שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-list"/></svg>הרשימות שלי</div>
+<div class="nav"><svg class="i"><use href="#ui-help"/></svg>עזרה</div></div>
+<div class="top">
+<div class="search"><svg class="i"><use href="#ui-search"/></svg>חיפוש בכל האחסונים ( / )</div>
+<div class="avatar">T</div></div>
+<div class="main">
+<div class="crumbs">אחסונים <span>›</span> זמן קיץ/אלול תשפ״ו <span>›</span> תיקיה ראשית <span>›</span> **סדרות**</div>
+<div class="tools"><span class="pill">חדש קודם</span><span class="pill on"><svg class="i"><use href="#ui-check"/></svg>שם</span><span class="pill">גודל</span></div>
+<div class="lbl">תיקיות</div>
+<div class="grid g5">
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר כאן</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר לגמרי</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר כאן</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר לגמרי</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר כאן</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר לגמרי</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר כאן</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר לגמרי</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר כאן</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר לגמרי</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה</span><small>7 קבצים · 2.7 GB</small></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר כאן</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר לגמרי</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר כאן</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר לגמרי</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה מוסתר</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר כאן</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם הסדרה</span></div><span class="dots">⋮</span></div>
+<div class="tile"><svg class="i"><use href="#ui-folder"/></svg>
+<div class="t"><span class="bl" aria-hidden="true">שם מוסתר לגמרי</span></div><span class="dots">⋮</span></div></div></div></div></div>
 <figcaption><b>תצוגת רשת או רשימה.</b> מיון לפי חדש, שם או גודל.</figcaption></figure>
     </div>
   </section>
