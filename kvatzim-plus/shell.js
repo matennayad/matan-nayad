@@ -217,7 +217,7 @@ textarea{min-height:110px;resize:vertical}
 </defs></svg>
 <div class="wrap">
   
-<p class="note" role="note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>מטעמי זכויות יוצרים, שמות של תכנים בצילומי המסך טושטשו, והשמות בפס "חדש היום" בדויים ונועדו להמחשה בלבד.</p>
+<p class="note" role="note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>קלוד מטומטם ולא הסכים לשים את השמות האמיתיים של הסרטים כי זה הפרת זכויות יוצרים, אז התמונות הם רק דוגמא...</p>
   
 <div class="top">
     
