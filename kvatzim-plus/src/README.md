@@ -20,3 +20,8 @@
 - `build.py` – בונה מהם את `shell.js`. הרצה מתיקיית הריפו: `python3 kvatzim-plus/src/build.py`
 
 שימו לב: הרצת `build.py` דורסת את `shell.js`. אם שיניתם טקסט ישירות ב-`shell.js`, שנו אותו גם ב-`page.tpl.html` (או ב-`mocks.py`) לפני שבונים מחדש.
+
+## מדריך ההתקנה (#install)
+`kvatzim-plus/install.js` מכיל את "מדריך טעינת תוסף לכרום" (HTML מלא עם הצילומים), והוא נפתח בכתובת
+https://matennayad.github.io/matan-nayad/#install
+הקישור הזה מופיע גם במיילים שהשרת שולח לחברים (הגדרה "קישור למדריך ההתקנה").

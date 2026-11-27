@@ -405,22 +405,27 @@ const t = setInterval(() => { p += 2; pct.textContent = p < 100 ? `טוען… $
 })();
 </script>
 
-<!-- ===== קבצים פלוס – דף נחיתה, נפתח בכתובת האתר עם #kvatzim-plus בסוף. הקוד נטען רק כשנכנסים לכתובת הזו ===== -->
+<!-- ===== קבצים פלוס – דף נחיתה (#kvatzim-plus) ומדריך ההתקנה (#install). הקוד נטען רק כשנכנסים לכתובת המתאימה ===== -->
 <script>
 (() => {
+  const PAGES = {
+    "#kvatzim-plus": { src: "kvatzim-plus/shell.js", key: "KP_SHELL", name: "קבצים פלוס" },
+    "#install": { src: "kvatzim-plus/install.js", key: "KP_GUIDE", name: "מדריך ההתקנה" }
+  };
   let loaded = false;
   function route(){
-    if (location.hash !== "#kvatzim-plus" || loaded) return;
+    const pg = PAGES[location.hash];
+    if (!pg || loaded) return;
     loaded = true;
     // מסך טעינה, כדי שיהיה ברור שהדף בדרך (ולא האתר הרגיל)
     const cover = document.createElement("div");
     cover.style.cssText = "position:fixed;inset:0;z-index:200;background:#050816;color:#f4f7ff;display:grid;place-items:center;font:700 22px Rubik,system-ui,sans-serif;text-align:center;padding:16px";
-    cover.textContent = "טוען את קבצים פלוס…";
+    cover.textContent = "טוען את " + pg.name + "…";
     document.body.appendChild(cover); document.body.style.overflow = "hidden";
     const slow = setTimeout(() => { cover.textContent = "הטעינה לוקחת יותר מהרגיל. אם יש סינון אינטרנט, ייתכן שהקובץ ממתין לאישור. נסו לרענן בעוד רגע."; }, 15000);
     // הדף נכתב לתוך אותו עמוד, כמו המטוס, ולכן לא צריך כתובת HTML נפרדת
-    const s = document.createElement("script"); s.src = "kvatzim-plus/shell.js?v=" + Date.now();
-    s.onload = () => { clearTimeout(slow); if (!window.KP_SHELL) { cover.textContent = "טעינת הדף נכשלה. נסו לרענן."; return; } const html = window.KP_SHELL; window.KP_SHELL = null; document.open(); document.write(html); document.close(); };
+    const s = document.createElement("script"); s.src = pg.src + "?v=" + Date.now();
+    s.onload = () => { clearTimeout(slow); if (!window[pg.key]) { cover.textContent = "טעינת הדף נכשלה. נסו לרענן."; return; } const html = window[pg.key]; window[pg.key] = null; document.open(); document.write(html); document.close(); };
     s.onerror = () => { clearTimeout(slow); loaded = false; cover.textContent = "טעינת הדף נכשלה (ייתכן שהקובץ נחסם בסינון). נסו לרענן."; };
     document.head.appendChild(s);
   }
